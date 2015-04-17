@@ -1,0 +1,35 @@
+.essrange {
+
+    height: 1rem;
+    box-shadow: none;
+    margin: 0;
+    position: relative;
+
+    &__bar {
+        $barColor: #555;
+        flex: 1 0 auto;
+        border-left: 2px solid $barColor;
+        border-right: 2px solid $barColor;
+        position: relative;
+
+        &:after {
+            content: '';
+            height: 2px;
+            position: absolute;
+            width: 100%;
+            background-color: $barColor;
+            left: 0;
+            top: 50%;
+        }
+    }
+
+    &__val {
+        position: absolute;
+        top: 0;
+        width: 1rem;
+        height: 1rem;
+        border: 2px solid green;
+        border-radius: 50%;
+        background-color: white;
+    }
+}

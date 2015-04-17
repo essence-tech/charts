@@ -1,0 +1,37 @@
+<!doctype html>
+<html ng-app="generator">
+    <head>
+        <title>Generator</title>
+        <meta charset="utf-8">
+        <meta name="google" content="notranslate">
+        <meta name="author" content="Essence">
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=1.0">
+        <link rel="stylesheet" type="text/css" href="/css/app.min.css">
+    </head>
+    <body>
+        <section>
+            <figure class="perfect flex-col">
+                <div class="perfect__header flex-row">
+                    <div class="perfect__header--question">Q: Which of the following do you associate with Chromebook?</div>
+                    <div class="perfect__header--observed">Observed points lift</div>
+                    <div class="perfect__header--range">Lift range</div>
+                </div>
+                <div class="perfect__answer flex-row align-middle">
+                    <div class="perfect__answer--copy">Affordable</div>
+                    <div class="perfect__answer--split">
+                        <progress class="perfect" max="100" value="30"></progress>
+                        <progress class="perfect" max="100" value="40"></progress>
+                    </div>
+                    <div class="perfect__answer--observed">+3.8%</div>
+                    <div class="perfect__answer--range">
+                        <ess-range min="0" max="100" high="70" low="20" val="30"></ess-range>
+                    </div>
+                </div>
+            </figure>
+        </section>
+
+        <script src="/components/angular/angular.min.js"></script>
+        <script src="/js/app.min.js"></script>
+    </body>
+</html>
