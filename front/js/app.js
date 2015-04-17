@@ -1,4 +1,5 @@
 'use strict';
 
-angular.module('generator', ['errorRange']);
+angular.module('generator', ['perfect']);
 angular.module('generator').run();
+

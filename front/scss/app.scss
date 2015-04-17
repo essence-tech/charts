@@ -10,7 +10,6 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-
 .flex-col {
     display: flex;
     flex-direction: column;
@@ -25,76 +24,32 @@ body {
     align-items: center;
 }
 
-figure {
-    box-shadow: $shadow;
-    border-radius: 3px;
-
-    .perfect__header {
-        padding: 1rem;
-        border: 1px solid rgba(0,0,0,.2);
-
-        &--question {
-            flex: 1 0 60%;
-        }
-
-        &--observed {
-            flex: 1 0 20%;
-        }
-
-        &--range {
-            flex: 1 0 20%;
-        }
+form {
+    margin-bottom: 3rem;
+    input, button {
+        font-family: 'Open Sans', sans-serif;
+        border-radius: 3px;
     }
 
-    .perfect__answer {
-        padding: 1rem;
-        &--copy {
-            flex: 1 0 20%;
-        }
+    input, select {
+        padding: .5rem;
+        border: 0;
+        border-bottom: 1px solid rgba(0,0,0,.1);
+    }
 
-        &--split {
-            flex: 1 0 40%;
+    button {
+        cursor: pointer;
+        background-color: white;
+        border: 0;
+        box-shadow: $shadow;
+        padding: .5rem;
+        transition: .1s box-shadow ease-in-out;
 
-            progress {
-                position: relative;
-
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
-
-                border: none;
-                display: block;
-                width: 100%;
-                height: 1rem;
-                margin: .25rem;
-
-                &::-webkit-progress-bar {
-                    background-color: white;
-                    color: white;
-                }
-
-                &::-webkit-progress-value {
-                    background-color: blue;
-                }
-
-                &::after {
-                    content: attr(value);
-                    position: absolute;
-                    top: 0;
-                    right: 1rem;
-                    line-height: 1rem;
-                }
-            }
-        }
-
-        &--observed {
-            flex: 1 0 20%;
-        }
-
-        &--range {
-            flex: 1 0 20%;
+        &:hover {
+            box-shadow: $shadowup;
         }
     }
 }
 
-@import "errorrange"
+@import "perfect";
+@import "errorrange";

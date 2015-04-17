@@ -1,3 +1,27 @@
+.google {
+    .green {
+        .essrange {
+            &__val {
+                border: 2px solid green;
+            }
+        }
+    }
+    .orange {
+        .essrange {
+            &__val {
+                border: 2px solid orange;
+            }
+        }
+    }
+    .red {
+        .essrange {
+            &__val {
+                border: 2px solid red;
+            }
+        }
+    }
+}
+
 .essrange {
 
     height: 1rem;
@@ -5,8 +29,19 @@
     margin: 0;
     position: relative;
 
+    &__min {
+        position: relative;
+        &::after {
+            content: attr(display);
+            position: absolute;
+            top: 1rem;
+            right: -1rem;
+            font-size: .8rem;
+        }
+    }
+
     &__bar {
-        $barColor: #555;
+        $barColor: rgba(0,0,0,.2);
         flex: 1 0 auto;
         border-left: 2px solid $barColor;
         border-right: 2px solid $barColor;
@@ -28,8 +63,27 @@
         top: 0;
         width: 1rem;
         height: 1rem;
-        border: 2px solid green;
+        border: 2px solid rgba(0,0,0,.2);
         border-radius: 50%;
         background-color: white;
+
+        &::after {
+            content: attr(display);
+            position: absolute;
+            top: 1rem;
+            left: -50%;
+            font-size: .8rem;
+        }
+    }
+
+    &__max {
+        position: relative;
+        &::after {
+            content: attr(display);
+            position: absolute;
+            top: 1rem;
+            left: -.7rem;
+            font-size: .8rem;
+        }
     }
 }

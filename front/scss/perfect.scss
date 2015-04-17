@@ -1,0 +1,124 @@
+.google {
+    progress {
+        &.control {
+            &::-webkit-progress-value {
+                background-color: #ddd;
+            }
+        }
+        &.exposed {
+            &::-webkit-progress-value {
+                background-color: #3369E8;
+            }
+        }
+    }
+
+    .green {
+        color: green;
+    }
+    .orange {
+        color: orange;
+    }
+    .red {
+        color: red;
+    }
+}
+
+figure {
+    box-shadow: $shadow;
+    border-radius: 3px;
+    margin: 0;
+
+    .perfect__header {
+        padding: 1rem;
+        border-bottom: 1px solid rgba(0,0,0,.2);
+
+        &--question {
+            flex: 1 0 60%;
+        }
+
+        &--observed {
+            flex: 1 0 10%;
+            text-align: center;
+        }
+
+        &--relative {
+            flex: 1 0 10%;
+            text-align: center;
+        }
+
+        &--range {
+            flex: 1 0 20%;
+            text-align: center;
+        }
+    }
+
+    .perfect__answer {
+        &--copy {
+            flex: 1 0 20%;
+            padding: 1rem;
+        }
+
+        &--split {
+            flex: 1 0 40%;
+            padding: 1rem;
+
+            div {
+                position: relative;
+
+                label {
+                    position: absolute;
+                    top: 0;
+                    margin-left: 1rem;
+                    font-weight: 300;
+                    font-size: .8rem;
+                }
+
+                progress {
+                    position: relative;
+
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+
+                    border: none;
+                    display: block;
+                    width: 100%;
+                    height: 1rem;
+                    margin: .25rem;
+
+                    &::-webkit-progress-bar {
+                        background-color: transparent;
+                        border-radius: 3px;
+                    }
+
+                    &::-webkit-progress-value {
+                        background-color: rgba(0,0,0,.1);
+                        border-radius: 3px;
+                        box-shadow: $shadow;
+                    }
+                }
+            }
+        }
+
+        &--observed {
+            flex: 1 0 10%;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        &--relative {
+            flex: 1 0 10%;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        &--range {
+            flex: 1 0 20%;
+            padding: 1rem;
+            text-align: center;
+        }
+    }
+}
+

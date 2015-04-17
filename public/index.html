@@ -10,25 +10,53 @@
         <link rel="stylesheet" type="text/css" href="/css/app.min.css">
     </head>
     <body>
-        <section>
-            <figure class="perfect flex-col">
-                <div class="perfect__header flex-row">
-                    <div class="perfect__header--question">Q: Which of the following do you associate with Chromebook?</div>
-                    <div class="perfect__header--observed">Observed points lift</div>
-                    <div class="perfect__header--range">Lift range</div>
+        <section ng-controller="perfect" class="flex-col align-middle">
+            <h1>Al's perfect chart</h1>
+            <form>
+                <div class="flex-row">
+                    <input ng-model="data.question" style="width: 100%">
                 </div>
-                <div class="perfect__answer flex-row align-middle">
-                    <div class="perfect__answer--copy">Affordable</div>
-                    <div class="perfect__answer--split">
-                        <progress class="perfect" max="100" value="30"></progress>
-                        <progress class="perfect" max="100" value="40"></progress>
-                    </div>
-                    <div class="perfect__answer--observed">+3.8%</div>
-                    <div class="perfect__answer--range">
-                        <ess-range min="0" max="100" high="70" low="20" val="30"></ess-range>
-                    </div>
+                <div class="flex-row" ng-repeat="answer in data.answers">
+                    <input ng-model="data.answers[$index].copy">
+                    <input ng-model="data.answers[$index].control">
+                    <input ng-model="data.answers[$index].exposed">
+                    <input ng-model="data.answers[$index].color">
+                    <input ng-model="data.answers[$index].range[0]">
+                    <input ng-model="data.answers[$index].range[1]">
+                    <input ng-model="data.answers[$index].range[2]">
+                    <button ng-click="removeAnswer($index)">X</button>
                 </div>
-            </figure>
+
+                <div>
+                    <button ng-click="addAnswer()">+Answer</button>
+                </div>
+
+                <div class="flex-row">
+                    <label>
+                        Theme
+                        <select ng-model="theme">
+                            <option></option>
+                            <option value="google">Google</option>
+                        </select>
+                    <label>
+                        Width
+                        <input type="number" min="0" max="100" ng-model="width">
+                    </label>
+                    <label>
+                        Background color
+                        <input ng-model="bgColor">
+                    </label>
+                    <label>
+                        Foreground color
+                        <input ng-model="fgColor">
+                    </label>
+                </div>
+            </form>
+
+
+            <article style="width: {{width}}%; background-color: {{bgColor}}; color: {{fgColor}};" class="{{theme}}">
+                <perfect data="data"></perfect>
+            </article>
         </section>
 
         <script src="/components/angular/angular.min.js"></script>
