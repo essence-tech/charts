@@ -58,53 +58,63 @@
     }]);
 
     angular.module('perfect').controller('perfect', ['$scope', function ($s) {
-        $s.data = {
-            question: 'Which of the following do you associate with Chromebook?',
-            answers: [
-                {
-                    copy: 'Affordable',
-                    control: 29.2,
-                    exposed: 33.0,
-                    color: 'green',
-                    range: [0, 3.8, 8.3],
-                },
-                {
-                    copy: 'Comes pre-loaded with apps',
-                    control: 20.6,
-                    exposed: 23.9,
-                    color: 'green',
-                    range: [0.5, 3.3, 6.4],
-                },
-                {
-                    copy: 'Has lots of RAM',
-                    control: 8.9,
-                    exposed: 11.9,
-                    color: 'green',
-                    range: [0.4, 3.0, 6.4],
-                },
-                {
-                    copy: 'Lightweight',
-                    control: 34.7,
-                    exposed: 36.4,
-                    color: 'orange',
-                    range: [-2.1, 1.7, 6.1],
-                },
-                {
-                    copy: 'Runs Google docs',
-                    control: 35.5,
-                    exposed: 34.5,
-                    color: 'red',
-                    range: [-2.9, -1.0, 4.5],
-                },
-                {
-                    copy: 'The laptop from Google',
-                    control: 50.7,
-                    exposed: 54.0,
-                    color: 'green',
-                    range: [0, 3.3, 6.7],
-                }
-            ]
-        };
+
+        var session = localStorage.getItem("data");
+        if (session == null) {
+            $s.data = {
+                question: 'Which of the following do you associate with Chromebook?',
+                answers: [
+                    {
+                        copy: 'Affordable',
+                        control: 29.2,
+                        exposed: 33.0,
+                        color: 'green',
+                        range: [0, 3.8, 8.3],
+                    },
+                    {
+                        copy: 'Comes pre-loaded with apps',
+                        control: 20.6,
+                        exposed: 23.9,
+                        color: 'green',
+                        range: [0.5, 3.3, 6.4],
+                    },
+                    {
+                        copy: 'Has lots of RAM',
+                        control: 8.9,
+                        exposed: 11.9,
+                        color: 'green',
+                        range: [0.4, 3.0, 6.4],
+                    },
+                    {
+                        copy: 'Lightweight',
+                        control: 34.7,
+                        exposed: 36.4,
+                        color: 'orange',
+                        range: [-2.1, 1.7, 6.1],
+                    },
+                    {
+                        copy: 'Runs Google docs',
+                        control: 35.5,
+                        exposed: 34.5,
+                        color: 'red',
+                        range: [-2.9, -1.0, 4.5],
+                    },
+                    {
+                        copy: 'The laptop from Google',
+                        control: 50.7,
+                        exposed: 54.0,
+                        color: 'green',
+                        range: [0, 3.3, 6.7],
+                    }
+                ]
+            };
+        } else {
+            $s.data = JSON.parse(session);
+        }
+
+        $s.$watch('data', function (n) {
+            localStorage.setItem("data", JSON.stringify(n));
+        }, true);
 
         $s.width = 100;
         $s.bgColor = '#fefefe';
