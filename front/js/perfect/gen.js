@@ -59,7 +59,23 @@
 
     angular.module('perfect').controller('perfect', ['$scope', function ($s) {
 
-        var session = localStorage.getItem("data");
+        $s.charts = [];
+        function updateCharts() {
+            $s.charts = [];
+            for ( var i=0,len=localStorage.length; i < len; ++i ) {
+                $s.charts.push(localStorage.key(i));
+            }
+        }
+        updateCharts();
+
+        var sessId = window.location.hash.replace('#', '');
+        if (sessId == "") {
+            sessId = 'default';
+        }
+        $s.name = sessId.replace('#', '');;
+
+        var session = localStorage.getItem(sessId);
+
         if (session == null) {
             $s.data = {
                 question: 'Which of the following do you associate with Chromebook?',
@@ -113,8 +129,25 @@
         }
 
         $s.$watch('data', function (n) {
-            localStorage.setItem("data", JSON.stringify(n));
+            localStorage.setItem(sessId, JSON.stringify(n));
+            updateCharts();
         }, true);
+
+        $s.$watch('name', function (n) {
+            window.location.hash = n;
+            sessId = window.location.hash.replace('#', '');
+        });
+
+        $s.clearCharts = function () {
+            localStorage.clear();
+            window.location.hash = '';
+            window.location.reload();
+        };
+
+        $s.changeChart = function (key) {
+            window.location.hash = key;
+            window.location.reload();
+        };
 
         $s.width = 100;
         $s.bgColor = '#fefefe';

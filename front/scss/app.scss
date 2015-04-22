@@ -28,31 +28,36 @@ body {
     margin-top: 1rem;
 }
 
+.chart-link {
+    margin-left: 1rem;
+}
+
+input, button {
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 3px;
+}
+
+input, select {
+    padding: .5rem;
+    border: 0;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+button {
+    cursor: pointer;
+    background-color: white;
+    border: 0;
+    box-shadow: $shadow;
+    padding: .5rem;
+    transition: .1s box-shadow ease-in-out;
+
+    &:hover {
+        box-shadow: $shadowup;
+    }
+}
+
 form {
     margin-bottom: 3rem;
-    input, button {
-        font-family: 'Open Sans', sans-serif;
-        border-radius: 3px;
-    }
-
-    input, select {
-        padding: .5rem;
-        border: 0;
-        border-bottom: 1px solid rgba(0,0,0,.1);
-    }
-
-    button {
-        cursor: pointer;
-        background-color: white;
-        border: 0;
-        box-shadow: $shadow;
-        padding: .5rem;
-        transition: .1s box-shadow ease-in-out;
-
-        &:hover {
-            box-shadow: $shadowup;
-        }
-    }
 }
 
 @import "perfect";

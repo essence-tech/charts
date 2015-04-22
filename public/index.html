@@ -11,8 +11,22 @@
     </head>
     <body>
         <section ng-controller="perfect" class="flex-col align-middle">
+            <div class="flex-row">
+                <label>
+                    Chart name
+                    <input ng-model="name" placeholder="Name the chart">
+                </label>
+            </div>
+            <div class="flex-row controls">
+                <span class="chart-link" ng-repeat="key in charts track by $index">
+                    <button ng-click="changeChart(key)">{{key}}</button>
+                </span>
+            </div>
+            <div class="flex-row controls">
+                <button ng-click="clearCharts()">Clear Charts</button>
+            </div>
             <form>
-                <div class="flex-row">
+                <div class="flex-row controls">
                     <input ng-model="data.question" style="width: 100%">
                 </div>
                 <div class="flex-row" ng-repeat="answer in data.answers">
