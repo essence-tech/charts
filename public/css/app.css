@@ -25,6 +25,9 @@ body {
   -ms-flex-align: center;
   align-items: center; }
 
+.controls {
+  margin-top: 1rem; }
+
 form {
   margin-bottom: 3rem; }
   form input, form button {

@@ -51,15 +51,15 @@ angular.module('generator').run();
                 '<div class="perfect__answer--split">'+
                     '<div>'+
                         '<progress class="control" max="{{maxPercent}}" value="{{answer.control}}"></progress>'+
-                        '<label style="left: {{(answer.control / maxPercent) * 100}}%">{{answer.control}}%</label>'+
+                        '<label style="left: {{(answer.control / maxPercent) * 100}}%">{{answer.control | number:barDec}}%</label>'+
                     '</div>'+
                     '<div>'+
                         '<progress class="exposed" max="{{maxPercent}}" value="{{answer.exposed}}"></progress>'+
-                        '<label style="left: {{(answer.exposed / maxPercent) * 100}}%">{{answer.exposed}}%</label>'+
+                        '<label style="left: {{(answer.exposed / maxPercent) * 100}}%">{{answer.exposed | number:barDec}}%</label>'+
                     '</div>'+
                 '</div>'+
-                '<div class="perfect__answer--observed {{answer.color}}">{{answer.exposed - answer.control | number:"1"}}%</div>'+
-                '<div class="perfect__answer--relative {{answer.color}}">{{((answer.exposed / answer.control) - 1) * 100.0 | number:"1"}}%</div>'+
+                '<div class="perfect__answer--observed {{answer.color}}">{{answer.exposed - answer.control | number:observedDec}}%</div>'+
+                '<div class="perfect__answer--relative {{answer.color}}">{{((answer.exposed / answer.control) - 1) * 100.0 | number:relativeDec}}%</div>'+
                 '<div class="perfect__answer--range">'+
                     '<ess-range min="minRange" max="maxRange" high="answer.range[2]" low="answer.range[0]" val="answer.range[1]" class="{{answer.color}}"></ess-range>'+
                 '</div>'+
@@ -68,7 +68,10 @@ angular.module('generator').run();
     angular.module('perfect').directive('perfect', [function () {
         return {
             scope: {
-                data: '='
+                data: '=',
+                barDec: '=',
+                observedDec: '=',
+                relativeDec: '='
             },
             template: perfect,
             link: function ($s, element, attrs) {
@@ -144,6 +147,9 @@ angular.module('generator').run();
         $s.bgColor = '#fefefe';
         $s.fgColor = '#000';
         $s.theme = 'google';
+        $s.barDec = 1;
+        $s.observedDec = 1;
+        $s.relativeDec = 1;
 
         $s.removeAnswer = function (idx) {
             $s.data.answers.splice(idx, 1);

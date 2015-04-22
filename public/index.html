@@ -11,7 +11,6 @@
     </head>
     <body>
         <section ng-controller="perfect" class="flex-col align-middle">
-            <h1>Al's perfect chart</h1>
             <form>
                 <div class="flex-row">
                     <input ng-model="data.question" style="width: 100%">
@@ -27,11 +26,11 @@
                     <button ng-click="removeAnswer($index)">X</button>
                 </div>
 
-                <div>
+                <div class="controls">
                     <button ng-click="addAnswer()">+Answer</button>
                 </div>
 
-                <div class="flex-row">
+                <div class="flex-row controls">
                     <label>
                         Theme
                         <select ng-model="theme">
@@ -51,11 +50,25 @@
                         <input ng-model="fgColor">
                     </label>
                 </div>
+                <div class="flex-row controls">
+                    <label>
+                        Bar decimals
+                        <input type="number" ng-model="barDec">
+                    </label>
+                    <label>
+                        Observed decimals
+                        <input type="number" ng-model="observedDec">
+                    </label>
+                    <label>
+                        Relative decimals
+                        <input type="number" ng-model="relativeDec">
+                    </label>
+                </div>
             </form>
 
 
             <article style="width: {{width}}%; background-color: {{bgColor}}; color: {{fgColor}};" class="{{theme}}">
-                <perfect data="data"></perfect>
+                <perfect data="data" bar-dec="barDec" observed-dec="observedDec" relative-dec="relativeDec"></perfect>
             </article>
         </section>
 
