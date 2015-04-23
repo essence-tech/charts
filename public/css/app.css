@@ -79,17 +79,17 @@ figure {
       -webkit-flex: 1 0 10%;
       -ms-flex: 1 0 10%;
       flex: 1 0 10%;
-      text-align: center; }
+      text-align: right; }
     figure .perfect__header--relative {
       -webkit-flex: 1 0 10%;
       -ms-flex: 1 0 10%;
       flex: 1 0 10%;
-      text-align: center; }
+      text-align: right; }
     figure .perfect__header--range {
       -webkit-flex: 1 0 20%;
       -ms-flex: 1 0 20%;
       flex: 1 0 20%;
-      text-align: center; }
+      text-align: right; }
   figure .perfect__answer--copy {
     -webkit-flex: 1 0 20%;
     -ms-flex: 1 0 20%;
@@ -130,14 +130,14 @@ figure {
     -ms-flex: 1 0 10%;
     flex: 1 0 10%;
     padding: 1rem;
-    text-align: center;
+    text-align: right;
     font-size: 1.5rem; }
   figure .perfect__answer--relative {
     -webkit-flex: 1 0 10%;
     -ms-flex: 1 0 10%;
     flex: 1 0 10%;
     padding: 1rem;
-    text-align: center;
+    text-align: right;
     font-size: 1.5rem; }
   figure .perfect__answer--range {
     -webkit-flex: 1 0 20%;
@@ -189,7 +189,7 @@ figure {
     border: 2px solid rgba(0, 0, 0, 0.2);
     border-radius: 50%;
     background-color: white; }
-    .essrange__val::after {
+    .essrange__val.show-label::after {
       content: attr(display);
       position: absolute;
       top: 1rem;

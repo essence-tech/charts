@@ -67,12 +67,14 @@
         border-radius: 50%;
         background-color: white;
 
-        &::after {
-            content: attr(display);
-            position: absolute;
-            top: 1rem;
-            left: -50%;
-            font-size: .8rem;
+        &.show-label {
+            &::after {
+                content: attr(display);
+                position: absolute;
+                top: 1rem;
+                left: -50%;
+                font-size: .8rem;
+            }
         }
     }
 

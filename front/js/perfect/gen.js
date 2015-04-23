@@ -5,8 +5,8 @@
         '<figure class="perfect flex-col">'+
             '<div class="perfect__header flex-row">'+
                 '<div class="perfect__header--question">Q: {{data.question}}</div>'+
-                '<div class="perfect__header--observed">Observed lift</div>'+
-                '<div class="perfect__header--realtive">Relative lift</div>'+
+                '<div class="perfect__header--relative">Relative lift</div>'+
+                '<div class="perfect__header--observed">Absolute lift</div>'+
                 '<div class="perfect__header--range">Lift range</div>'+
             '</div>'+
             '<div class="perfect__answer flex-row align-middle" ng-repeat="answer in data.answers">'+
@@ -21,10 +21,10 @@
                         '<label style="left: {{(answer.exposed / maxPercent) * 100}}%">{{answer.exposed | number:barDec}}%</label>'+
                     '</div>'+
                 '</div>'+
-                '<div class="perfect__answer--observed {{answer.color}}">{{answer.exposed - answer.control | number:observedDec}}%</div>'+
-                '<div class="perfect__answer--relative {{answer.color}}">{{((answer.exposed / answer.control) - 1) * 100.0 | number:relativeDec}}%</div>'+
+                '<div class="perfect__answer--relative {{answer.color}}">{{((answer.exposed / answer.control) - 1) * 100.0 | number:relativeDec | pn}}%</div>'+
+                '<div class="perfect__answer--observed {{answer.color}}">{{answer.exposed - answer.control | number:observedDec | pn}}%</div>'+
                 '<div class="perfect__answer--range">'+
-                    '<ess-range min="minRange" max="maxRange" high="answer.range[2]" low="answer.range[0]" val="answer.range[1]" class="{{answer.color}}"></ess-range>'+
+                    '<ess-range min="minRange" max="maxRange" high="answer.range[2]" low="answer.range[0]" val="answer.range[1]" class="{{answer.color}}" show-circle-label="showCircleLabel"></ess-range>'+
                 '</div>'+
             '</div>'+
         '</figure>';
@@ -34,7 +34,8 @@
                 data: '=',
                 barDec: '=',
                 observedDec: '=',
-                relativeDec: '='
+                relativeDec: '=',
+                showCircleLabel: '='
             },
             template: perfect,
             link: function ($s, element, attrs) {
@@ -56,6 +57,12 @@
             }
         }
     }]);
+
+    angular.module('perfect').filter('pn', function () {
+        return function (num) {
+            return (num > 0) ? '+' + num : num;
+        }
+    });
 
     angular.module('perfect').controller('perfect', ['$scope', function ($s) {
 
@@ -156,6 +163,7 @@
         $s.barDec = 1;
         $s.observedDec = 1;
         $s.relativeDec = 1;
+        $s.showCircleLabel = true;
 
         $s.removeAnswer = function (idx) {
             $s.data.answers.splice(idx, 1);

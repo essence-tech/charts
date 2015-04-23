@@ -11,7 +11,7 @@ angular.module('generator').run();
         '<div class="essrange__min" display="{{low}}%" style="flex: 0 1 {{minWidth}}%"></div>'+
         '<div class="essrange__bar"></div>'+
         '<div class="essrange__max" display="{{high}}%" style="flex: 0 1 {{maxWidth}}%"></div>'+
-        '<div class="essrange__val" display="{{val}}%" style="left: calc({{valPos}}% - .5rem)"></div>'+
+        '<div ng-class="{\'show-label\': showCircleLabel}" class="essrange__val" display="{{val}}%" style="left: calc({{valPos}}% - .5rem)"></div>'+
     '</figure>';
     angular.module('errorRange').directive('essRange', [function () {
         return {
@@ -20,7 +20,8 @@ angular.module('generator').run();
                 max: '=',
                 high: '=',
                 low: '=',
-                val: '='
+                val: '=',
+                showCircleLabel: '='
             },
             template: errorRange,
             link: function ($s, element, attrs) {
@@ -42,8 +43,8 @@ angular.module('generator').run();
         '<figure class="perfect flex-col">'+
             '<div class="perfect__header flex-row">'+
                 '<div class="perfect__header--question">Q: {{data.question}}</div>'+
-                '<div class="perfect__header--observed">Observed lift</div>'+
-                '<div class="perfect__header--realtive">Relative lift</div>'+
+                '<div class="perfect__header--relative">Relative lift</div>'+
+                '<div class="perfect__header--observed">Absolute lift</div>'+
                 '<div class="perfect__header--range">Lift range</div>'+
             '</div>'+
             '<div class="perfect__answer flex-row align-middle" ng-repeat="answer in data.answers">'+
@@ -58,10 +59,10 @@ angular.module('generator').run();
                         '<label style="left: {{(answer.exposed / maxPercent) * 100}}%">{{answer.exposed | number:barDec}}%</label>'+
                     '</div>'+
                 '</div>'+
-                '<div class="perfect__answer--observed {{answer.color}}">{{answer.exposed - answer.control | number:observedDec}}%</div>'+
-                '<div class="perfect__answer--relative {{answer.color}}">{{((answer.exposed / answer.control) - 1) * 100.0 | number:relativeDec}}%</div>'+
+                '<div class="perfect__answer--relative {{answer.color}}">{{((answer.exposed / answer.control) - 1) * 100.0 | number:relativeDec | pn}}%</div>'+
+                '<div class="perfect__answer--observed {{answer.color}}">{{answer.exposed - answer.control | number:observedDec | pn}}%</div>'+
                 '<div class="perfect__answer--range">'+
-                    '<ess-range min="minRange" max="maxRange" high="answer.range[2]" low="answer.range[0]" val="answer.range[1]" class="{{answer.color}}"></ess-range>'+
+                    '<ess-range min="minRange" max="maxRange" high="answer.range[2]" low="answer.range[0]" val="answer.range[1]" class="{{answer.color}}" show-circle-label="showCircleLabel"></ess-range>'+
                 '</div>'+
             '</div>'+
         '</figure>';
@@ -71,7 +72,8 @@ angular.module('generator').run();
                 data: '=',
                 barDec: '=',
                 observedDec: '=',
-                relativeDec: '='
+                relativeDec: '=',
+                showCircleLabel: '='
             },
             template: perfect,
             link: function ($s, element, attrs) {
@@ -93,6 +95,12 @@ angular.module('generator').run();
             }
         }
     }]);
+
+    angular.module('perfect').filter('pn', function () {
+        return function (num) {
+            return (num > 0) ? '+' + num : num;
+        }
+    });
 
     angular.module('perfect').controller('perfect', ['$scope', function ($s) {
 
@@ -193,6 +201,7 @@ angular.module('generator').run();
         $s.barDec = 1;
         $s.observedDec = 1;
         $s.relativeDec = 1;
+        $s.showCircleLabel = true;
 
         $s.removeAnswer = function (idx) {
             $s.data.answers.splice(idx, 1);

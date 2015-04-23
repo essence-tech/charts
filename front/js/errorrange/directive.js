@@ -5,7 +5,7 @@
         '<div class="essrange__min" display="{{low}}%" style="flex: 0 1 {{minWidth}}%"></div>'+
         '<div class="essrange__bar"></div>'+
         '<div class="essrange__max" display="{{high}}%" style="flex: 0 1 {{maxWidth}}%"></div>'+
-        '<div class="essrange__val" display="{{val}}%" style="left: calc({{valPos}}% - .5rem)"></div>'+
+        '<div ng-class="{\'show-label\': showCircleLabel}" class="essrange__val" display="{{val}}%" style="left: calc({{valPos}}% - .5rem)"></div>'+
     '</figure>';
     angular.module('errorRange').directive('essRange', [function () {
         return {
@@ -14,7 +14,8 @@
                 max: '=',
                 high: '=',
                 low: '=',
-                val: '='
+                val: '=',
+                showCircleLabel: '='
             },
             template: errorRange,
             link: function ($s, element, attrs) {

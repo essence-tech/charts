@@ -38,17 +38,17 @@ figure {
 
         &--observed {
             flex: 1 0 10%;
-            text-align: center;
+            text-align: right;
         }
 
         &--relative {
             flex: 1 0 10%;
-            text-align: center;
+            text-align: right;
         }
 
         &--range {
             flex: 1 0 20%;
-            text-align: center;
+            text-align: right;
         }
     }
 
@@ -103,14 +103,14 @@ figure {
         &--observed {
             flex: 1 0 10%;
             padding: 1rem;
-            text-align: center;
+            text-align: right;
             font-size: 1.5rem;
         }
 
         &--relative {
             flex: 1 0 10%;
             padding: 1rem;
-            text-align: center;
+            text-align: right;
             font-size: 1.5rem;
         }
 
