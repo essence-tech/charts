@@ -25,7 +25,7 @@ body {
 }
 
 .controls {
-    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .chart-link {
@@ -54,10 +54,6 @@ button {
     &:hover {
         box-shadow: $shadowup;
     }
-}
-
-form {
-    margin-bottom: 3rem;
 }
 
 @import "perfect";

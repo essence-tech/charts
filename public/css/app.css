@@ -26,7 +26,7 @@ body {
   align-items: center; }
 
 .controls {
-  margin-top: 1rem; }
+  margin-bottom: 1rem; }
 
 .chart-link {
   margin-left: 1rem; }
@@ -49,9 +49,6 @@ button {
   transition: .1s box-shadow ease-in-out; }
   button:hover {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
-
-form {
-  margin-bottom: 3rem; }
 
 .google progress.control::-webkit-progress-value {
   background-color: #ddd; }
