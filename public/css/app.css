@@ -127,14 +127,14 @@ figure {
     -ms-flex: 1 0 10%;
     flex: 1 0 10%;
     padding: 1rem;
-    text-align: right;
+    text-align: center;
     font-size: 1.5rem; }
   figure .perfect__answer--relative {
     -webkit-flex: 1 0 10%;
     -ms-flex: 1 0 10%;
     flex: 1 0 10%;
     padding: 1rem;
-    text-align: right;
+    text-align: center;
     font-size: 1.5rem; }
   figure .perfect__answer--range {
     -webkit-flex: 1 0 20%;
