@@ -76,17 +76,17 @@ figure {
       -webkit-flex: 1 0 10%;
       -ms-flex: 1 0 10%;
       flex: 1 0 10%;
-      text-align: right; }
+      text-align: center; }
     figure .perfect__header--relative {
       -webkit-flex: 1 0 10%;
       -ms-flex: 1 0 10%;
       flex: 1 0 10%;
-      text-align: right; }
+      text-align: center; }
     figure .perfect__header--range {
       -webkit-flex: 1 0 20%;
       -ms-flex: 1 0 20%;
       flex: 1 0 20%;
-      text-align: right; }
+      text-align: center; }
   figure .perfect__answer--copy {
     -webkit-flex: 1 0 20%;
     -ms-flex: 1 0 20%;
