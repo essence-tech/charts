@@ -50,17 +50,6 @@ button {
   button:hover {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
-.google progress.control::-webkit-progress-value {
-  background-color: #ddd; }
-.google progress.exposed::-webkit-progress-value {
-  background-color: #3369E8; }
-.google .green {
-  color: green; }
-.google .orange {
-  color: orange; }
-.google .red {
-  color: red; }
-
 figure {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   border-radius: 3px;
@@ -143,13 +132,6 @@ figure {
     padding: 1rem;
     text-align: center; }
 
-.google .green .essrange__val {
-  border: 2px solid green; }
-.google .orange .essrange__val {
-  border: 2px solid orange; }
-.google .red .essrange__val {
-  border: 2px solid red; }
-
 .essrange {
   height: 1rem;
   box-shadow: none;
@@ -200,3 +182,39 @@ figure {
       top: 1rem;
       left: -.7rem;
       font-size: .8rem; }
+
+.google progress.control::-webkit-progress-value {
+  background-color: #ddd; }
+.google progress.exposed::-webkit-progress-value {
+  background-color: #3369E8; }
+.google .green {
+  color: green; }
+  .google .green .essrange__val {
+    border: 2px solid green; }
+.google .orange {
+  color: orange; }
+  .google .orange .essrange__val {
+    border: 2px solid orange; }
+.google .red {
+  color: red; }
+  .google .red .essrange__val {
+    border: 2px solid red; }
+
+.essence .perfect__header, .essence .perfect__answer--copy {
+  font-family: Raleway,sans-serif; }
+.essence progress.control::-webkit-progress-value {
+  background-color: #939598; }
+.essence progress.exposed::-webkit-progress-value {
+  background-color: #00adbb; }
+.essence .green {
+  color: green; }
+  .essence .green .essrange__val {
+    border: 2px solid green; }
+.essence .orange {
+  color: orange; }
+  .essence .orange .essrange__val {
+    border: 2px solid orange; }
+.essence .red {
+  color: #d13238; }
+  .essence .red .essrange__val {
+    border: 2px solid #d13238; }

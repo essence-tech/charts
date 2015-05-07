@@ -1,28 +1,3 @@
-.google {
-    progress {
-        &.control {
-            &::-webkit-progress-value {
-                background-color: #ddd;
-            }
-        }
-        &.exposed {
-            &::-webkit-progress-value {
-                background-color: #3369E8;
-            }
-        }
-    }
-
-    .green {
-        color: green;
-    }
-    .orange {
-        color: orange;
-    }
-    .red {
-        color: red;
-    }
-}
-
 figure {
     box-shadow: $shadow;
     border-radius: 3px;

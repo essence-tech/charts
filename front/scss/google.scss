@@ -1,0 +1,41 @@
+.google {
+    progress {
+        &.control {
+            &::-webkit-progress-value {
+                background-color: #ddd;
+            }
+        }
+        &.exposed {
+            &::-webkit-progress-value {
+                background-color: #3369E8;
+            }
+        }
+    }
+
+    .green {
+        color: green;
+
+        .essrange {
+            &__val {
+                border: 2px solid green;
+            }
+        }
+    }
+    .orange {
+        color: orange;
+
+        .essrange {
+            &__val {
+                border: 2px solid orange;
+            }
+        }
+    }
+    .red {
+        color: red;
+        .essrange {
+            &__val {
+                border: 2px solid red;
+            }
+        }
+    }
+}
