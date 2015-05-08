@@ -188,15 +188,15 @@ figure {
 .google progress.exposed::-webkit-progress-value {
   background-color: #4285f4; }
 .google .green {
-  color: green; }
+  color: #0f9d58; }
   .google .green .essrange__val {
     border: 2px solid #0f9d58; }
 .google .orange {
-  color: orange; }
+  color: #f4b400; }
   .google .orange .essrange__val {
     border: 2px solid #f4b400; }
 .google .red {
-  color: red; }
+  color: #db4437; }
   .google .red .essrange__val {
     border: 2px solid #db4437; }
 

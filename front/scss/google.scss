@@ -13,7 +13,7 @@
     }
 
     .green {
-        color: green;
+        color: #0f9d58;
 
         .essrange {
             &__val {
@@ -22,7 +22,7 @@
         }
     }
     .orange {
-        color: orange;
+        color: #f4b400;
 
         .essrange {
             &__val {
@@ -31,7 +31,7 @@
         }
     }
     .red {
-        color: red;
+        color: #db4437;
         .essrange {
             &__val {
                 border: 2px solid #db4437;
