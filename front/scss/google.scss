@@ -7,7 +7,7 @@
         }
         &.exposed {
             &::-webkit-progress-value {
-                background-color: #3369E8;
+                background-color: #4285f4;
             }
         }
     }
@@ -17,7 +17,7 @@
 
         .essrange {
             &__val {
-                border: 2px solid green;
+                border: 2px solid #0f9d58;
             }
         }
     }
@@ -26,7 +26,7 @@
 
         .essrange {
             &__val {
-                border: 2px solid orange;
+                border: 2px solid #f4b400;
             }
         }
     }
@@ -34,7 +34,7 @@
         color: red;
         .essrange {
             &__val {
-                border: 2px solid red;
+                border: 2px solid #db4437;
             }
         }
     }
