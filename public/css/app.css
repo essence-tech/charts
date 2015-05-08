@@ -186,19 +186,19 @@ figure {
 .google progress.control::-webkit-progress-value {
   background-color: #ddd; }
 .google progress.exposed::-webkit-progress-value {
-  background-color: #3369E8; }
+  background-color: #4285f4; }
 .google .green {
   color: green; }
   .google .green .essrange__val {
-    border: 2px solid green; }
+    border: 2px solid #0f9d58; }
 .google .orange {
   color: orange; }
   .google .orange .essrange__val {
-    border: 2px solid orange; }
+    border: 2px solid #f4b400; }
 .google .red {
   color: red; }
   .google .red .essrange__val {
-    border: 2px solid red; }
+    border: 2px solid #db4437; }
 
 .essence .perfect__header, .essence .perfect__answer--copy {
   font-family: Raleway,sans-serif; }
