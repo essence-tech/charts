@@ -1,0 +1,43 @@
+.youtube {
+    color: #666;
+    progress {
+        &.control {
+            &::-webkit-progress-value {
+                background-color: #e3e3e3;
+            }
+        }
+        &.exposed {
+            &::-webkit-progress-value {
+                background-color: #e52d27;
+            }
+        }
+    }
+
+    .green {
+        color: green;
+
+        .essrange {
+            &__val {
+                border: 2px solid green;
+            }
+        }
+    }
+    .orange {
+        color: orange;
+
+        .essrange {
+            &__val {
+                border: 2px solid orange;
+            }
+        }
+    }
+    .red {
+        color: #e52d27;
+        .essrange {
+            &__val {
+                border: 2px solid #e52d27;
+            }
+        }
+    }
+}
+

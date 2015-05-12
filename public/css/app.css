@@ -218,3 +218,22 @@ figure {
   color: #d13238; }
   .essence .red .essrange__val {
     border: 2px solid #d13238; }
+
+.youtube {
+  color: #666; }
+  .youtube progress.control::-webkit-progress-value {
+    background-color: #e3e3e3; }
+  .youtube progress.exposed::-webkit-progress-value {
+    background-color: #e52d27; }
+  .youtube .green {
+    color: green; }
+    .youtube .green .essrange__val {
+      border: 2px solid green; }
+  .youtube .orange {
+    color: orange; }
+    .youtube .orange .essrange__val {
+      border: 2px solid orange; }
+  .youtube .red {
+    color: #e52d27; }
+    .youtube .red .essrange__val {
+      border: 2px solid #e52d27; }
