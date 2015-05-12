@@ -195,9 +195,9 @@ angular.module('generator').run();
         };
 
         $s.width = 100;
-        $s.bgColor = '#fefefe';
-        $s.fgColor = '#000';
-        $s.theme = 'google';
+        $s.bgColor = '';
+        $s.fgColor = '';
+        $s.theme = '';
         $s.barDec = 1;
         $s.observedDec = 1;
         $s.relativeDec = 1;

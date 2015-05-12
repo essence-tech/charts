@@ -2,7 +2,8 @@
   box-sizing: border-box; }
 
 body {
-  font-family: 'Open Sans', sans-serif; }
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300; }
 
 .flex-col {
   display: -webkit-flex;
@@ -53,7 +54,9 @@ button {
 figure {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   border-radius: 3px;
-  margin: 0; }
+  margin: 0;
+  background: #fefefe;
+  color: #000; }
   figure .perfect__header {
     padding: 1rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
@@ -221,6 +224,9 @@ figure {
 
 .youtube {
   color: #666; }
+  .youtube .perfect__header, .youtube .perfect__answer--copy {
+    color: #000;
+    font-weight: 400; }
   .youtube progress.control::-webkit-progress-value {
     background-color: #e3e3e3; }
   .youtube progress.exposed::-webkit-progress-value {

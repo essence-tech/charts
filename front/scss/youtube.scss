@@ -1,5 +1,9 @@
 .youtube {
     color: #666;
+    .perfect__header, .perfect__answer--copy {
+        color: #000;
+        font-weight: 400;
+    }
     progress {
         &.control {
             &::-webkit-progress-value {
