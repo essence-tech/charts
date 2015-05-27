@@ -44,7 +44,7 @@ angular.module('generator').run();
             '<div class="perfect__header flex-row">'+
                 '<div class="perfect__header--question">Q: {{data.question}}</div>'+
                 '<div class="perfect__header--relative" ng-if="showRelativeLift">Relative lift</div>'+
-                '<div class="perfect__header--observed">Absolute lift</div>'+
+                '<div class="perfect__header--observed" ng-class="{wider: !showRelativeLift}">Absolute lift</div>'+
                 '<div class="perfect__header--range" ng-class="{wider: !showRelativeLift}">Lift range</div>'+
             '</div>'+
             '<div class="perfect__answer flex-row align-middle" ng-repeat="answer in data.answers">'+
@@ -60,7 +60,7 @@ angular.module('generator').run();
                     '</div>'+
                 '</div>'+
                 '<div class="perfect__answer--relative {{answer.color}}" ng-if="showRelativeLift">{{((answer.exposed / answer.control) - 1) * 100.0 | number:relativeDec | pn}}%</div>'+
-                '<div class="perfect__answer--observed {{answer.color}}">{{answer.exposed - answer.control | number:observedDec | pn}}%</div>'+
+                '<div class="perfect__answer--observed {{answer.color}}" ng-class="{wider: !showRelativeLift}">{{answer.exposed - answer.control | number:observedDec | pn}}%</div>'+
                 '<div class="perfect__answer--range" ng-class="{wider: !showRelativeLift}">'+
                     '<ess-range min="minRange" max="maxRange" high="answer.range[2]" low="answer.range[0]" val="answer.range[1]" class="{{answer.color}}" show-circle-label="showCircleLabel"></ess-range>'+
                 '</div>'+

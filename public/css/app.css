@@ -70,31 +70,39 @@ figure {
   color: #000;
   margin-bottom: 10rem; }
   figure .perfect__header {
-    padding: 1rem;
+    padding: 1rem 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
     figure .perfect__header--question {
       -webkit-flex: 1 0 60%;
       -ms-flex: 1 0 60%;
-      flex: 1 0 60%; }
+      flex: 1 0 60%;
+      padding: 0 1rem; }
     figure .perfect__header--observed {
       -webkit-flex: 1 0 10%;
       -ms-flex: 1 0 10%;
       flex: 1 0 10%;
-      text-align: center; }
+      text-align: center;
+      padding: 0 1rem; }
+      figure .perfect__header--observed.wider {
+        -webkit-flex: 1 0 15%;
+        -ms-flex: 1 0 15%;
+        flex: 1 0 15%; }
     figure .perfect__header--relative {
       -webkit-flex: 1 0 10%;
       -ms-flex: 1 0 10%;
       flex: 1 0 10%;
-      text-align: center; }
+      text-align: center;
+      padding: 0 1rem; }
     figure .perfect__header--range {
       -webkit-flex: 1 0 20%;
       -ms-flex: 1 0 20%;
       flex: 1 0 20%;
-      text-align: center; }
+      text-align: center;
+      padding: 0 1rem; }
       figure .perfect__header--range.wider {
-        -webkit-flex: 1 0 30%;
-        -ms-flex: 1 0 30%;
-        flex: 1 0 30%; }
+        -webkit-flex: 1 0 25%;
+        -ms-flex: 1 0 25%;
+        flex: 1 0 25%; }
   figure .perfect__answer--copy {
     -webkit-flex: 1 0 20%;
     -ms-flex: 1 0 20%;
@@ -137,6 +145,10 @@ figure {
     padding: 1rem;
     text-align: center;
     font-size: 1.5rem; }
+    figure .perfect__answer--observed.wider {
+      -webkit-flex: 1 0 15%;
+      -ms-flex: 1 0 15%;
+      flex: 1 0 15%; }
   figure .perfect__answer--relative {
     -webkit-flex: 1 0 10%;
     -ms-flex: 1 0 10%;
@@ -151,9 +163,9 @@ figure {
     padding: 1rem;
     text-align: center; }
     figure .perfect__answer--range.wider {
-      -webkit-flex: 1 0 30%;
-      -ms-flex: 1 0 30%;
-      flex: 1 0 30%; }
+      -webkit-flex: 1 0 25%;
+      -ms-flex: 1 0 25%;
+      flex: 1 0 25%; }
 
 .essrange {
   height: 1rem;
