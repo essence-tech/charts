@@ -84,10 +84,14 @@
                     Show circle label
                     <input type="checkbox" ng-model="showCircleLabel">
                 </label>
+                <label>
+                    Show relative lift
+                    <input type="checkbox" ng-model="showRelative">
+                </label>
             </div>
 
             <article style="width: {{width}}%; background-color: {{bgColor}}; color: {{fgColor}};" class="{{theme}}">
-                <perfect data="data" bar-dec="barDec" observed-dec="observedDec" relative-dec="relativeDec" show-circle-label="showCircleLabel"></perfect>
+                <perfect data="data" bar-dec="barDec" observed-dec="observedDec" relative-dec="relativeDec" show-circle-label="showCircleLabel" show-relative-lift="showRelative"></perfect>
             </article>
         </section>
 

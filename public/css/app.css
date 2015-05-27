@@ -79,6 +79,10 @@ figure {
       -ms-flex: 1 0 20%;
       flex: 1 0 20%;
       text-align: center; }
+      figure .perfect__header--range.wider {
+        -webkit-flex: 1 0 30%;
+        -ms-flex: 1 0 30%;
+        flex: 1 0 30%; }
   figure .perfect__answer--copy {
     -webkit-flex: 1 0 20%;
     -ms-flex: 1 0 20%;
@@ -134,12 +138,17 @@ figure {
     flex: 1 0 20%;
     padding: 1rem;
     text-align: center; }
+    figure .perfect__answer--range.wider {
+      -webkit-flex: 1 0 30%;
+      -ms-flex: 1 0 30%;
+      flex: 1 0 30%; }
 
 .essrange {
   height: 1rem;
   box-shadow: none;
   margin: 0;
-  position: relative; }
+  position: relative;
+  background: transparent; }
   .essrange__min {
     position: relative; }
     .essrange__min::after {
@@ -190,6 +199,18 @@ figure {
   background-color: #ddd; }
 .google progress.exposed::-webkit-progress-value {
   background-color: #4285f4; }
+.google .perfect__header {
+  background-color: #5f6165;
+  color: white;
+  border-bottom: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px; }
+.google .perfect__answer {
+  background: linear-gradient(to right, #5f6165 0%, #5f6165 20%, #ffffff 20%, #ffffff 60%, #ececec 60%, #ededed 100%); }
+  .google .perfect__answer--copy {
+    color: white; }
+    .google .perfect__answer--copy:last-child {
+      border-bottom-left-radius: 3px; }
 .google .green {
   color: #0f9d58; }
   .google .green .essrange__val {

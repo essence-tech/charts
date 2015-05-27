@@ -5,9 +5,9 @@
         '<figure class="perfect flex-col">'+
             '<div class="perfect__header flex-row">'+
                 '<div class="perfect__header--question">Q: {{data.question}}</div>'+
-                '<div class="perfect__header--relative">Relative lift</div>'+
+                '<div class="perfect__header--relative" ng-if="showRelativeLift">Relative lift</div>'+
                 '<div class="perfect__header--observed">Absolute lift</div>'+
-                '<div class="perfect__header--range">Lift range</div>'+
+                '<div class="perfect__header--range" ng-class="{wider: !showRelativeLift}">Lift range</div>'+
             '</div>'+
             '<div class="perfect__answer flex-row align-middle" ng-repeat="answer in data.answers">'+
                 '<div class="perfect__answer--copy">{{answer.copy}}</div>'+
@@ -21,9 +21,9 @@
                         '<label style="left: {{(answer.exposed / maxPercent) * 100}}%">{{answer.exposed | number:barDec}}%</label>'+
                     '</div>'+
                 '</div>'+
-                '<div class="perfect__answer--relative {{answer.color}}">{{((answer.exposed / answer.control) - 1) * 100.0 | number:relativeDec | pn}}%</div>'+
+                '<div class="perfect__answer--relative {{answer.color}}" ng-if="showRelativeLift">{{((answer.exposed / answer.control) - 1) * 100.0 | number:relativeDec | pn}}%</div>'+
                 '<div class="perfect__answer--observed {{answer.color}}">{{answer.exposed - answer.control | number:observedDec | pn}}%</div>'+
-                '<div class="perfect__answer--range">'+
+                '<div class="perfect__answer--range" ng-class="{wider: !showRelativeLift}">'+
                     '<ess-range min="minRange" max="maxRange" high="answer.range[2]" low="answer.range[0]" val="answer.range[1]" class="{{answer.color}}" show-circle-label="showCircleLabel"></ess-range>'+
                 '</div>'+
             '</div>'+
@@ -35,7 +35,8 @@
                 barDec: '=',
                 observedDec: '=',
                 relativeDec: '=',
-                showCircleLabel: '='
+                showCircleLabel: '=',
+                showRelativeLift: '='
             },
             template: perfect,
             link: function ($s, element, attrs) {
@@ -164,6 +165,7 @@
         $s.observedDec = 1;
         $s.relativeDec = 1;
         $s.showCircleLabel = true;
+        $s.showRelative = true;
 
         $s.removeAnswer = function (idx) {
             $s.data.answers.splice(idx, 1);

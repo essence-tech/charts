@@ -26,6 +26,10 @@ figure {
         &--range {
             flex: 1 0 20%;
             text-align: center;
+
+            &.wider {
+                flex: 1 0 30%;
+            }
         }
     }
 
@@ -95,6 +99,10 @@ figure {
             flex: 1 0 20%;
             padding: 1rem;
             text-align: center;
+
+            &.wider {
+                flex: 1 0 30%;
+            }
         }
     }
 }
