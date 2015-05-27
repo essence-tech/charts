@@ -28,6 +28,17 @@ body {
 
 .controls {
   margin-bottom: 1rem; }
+  .controls label {
+    padding: .5rem;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin: 0 3rem; }
+    .controls label input, .controls label select {
+      margin-left: 1rem; }
 
 .chart-link {
   margin-left: 1rem; }
@@ -39,7 +50,7 @@ input, button {
 input, select {
   padding: .5rem;
   border: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+  border: 1px solid rgba(0, 0, 0, 0.1); }
 
 button {
   cursor: pointer;
@@ -56,7 +67,8 @@ figure {
   border-radius: 3px;
   margin: 0;
   background: #fefefe;
-  color: #000; }
+  color: #000;
+  margin-bottom: 10rem; }
   figure .perfect__header {
     padding: 1rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2); }

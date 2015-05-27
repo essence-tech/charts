@@ -45,49 +45,52 @@
                 <button ng-click="addAnswer()">+Answer</button>
             </div>
 
-            <div class="flex-row controls">
-                <label>
-                    Theme
-                    <select ng-model="theme">
-                        <option></option>
-                        <option value="google">Google</option>
-                        <option value="essence">Essence</option>
-                        <option value="youtube">YouTube</option>
-                    </select>
-                <label>
-                    Width
-                    <input type="number" min="0" max="100" ng-model="width">
-                </label>
-                <label>
-                    Background color
-                    <input ng-model="bgColor">
-                </label>
-                <label>
-                    Foreground color
-                    <input ng-model="fgColor">
-                </label>
-            </div>
-            <div class="flex-row controls">
-                <label>
-                    Bar decimals
-                    <input type="number" ng-model="barDec">
-                </label>
-                <label>
-                    Observed decimals
-                    <input type="number" ng-model="observedDec">
-                </label>
-                <label>
-                    Relative decimals
-                    <input type="number" ng-model="relativeDec">
-                </label>
-                <label>
-                    Show circle label
-                    <input type="checkbox" ng-model="showCircleLabel">
-                </label>
-                <label>
-                    Show relative lift
-                    <input type="checkbox" ng-model="showRelative">
-                </label>
+            <div class="flex-row">
+                <div class="flex-col controls">
+                    <label>
+                        Theme
+                        <select ng-model="theme">
+                            <option></option>
+                            <option value="google">Google</option>
+                            <option value="essence">Essence</option>
+                            <option value="youtube">YouTube</option>
+                        </select>
+                    </label>
+                    <label>
+                        Width
+                        <input type="number" min="0" max="100" ng-model="width">
+                    </label>
+                    <label>
+                        Background color
+                        <input ng-model="bgColor">
+                    </label>
+                    <label>
+                        Foreground color
+                        <input ng-model="fgColor">
+                    </label>
+                </div>
+                <div class="flex-col controls">
+                    <label>
+                        Bar decimals
+                        <input type="number" ng-model="barDec">
+                    </label>
+                    <label>
+                        Observed decimals
+                        <input type="number" ng-model="observedDec">
+                    </label>
+                    <label>
+                        Relative decimals
+                        <input type="number" ng-model="relativeDec">
+                    </label>
+                    <label>
+                        <input type="checkbox" ng-model="showCircleLabel">
+                        Show circle label
+                    </label>
+                    <label>
+                        <input type="checkbox" ng-model="showRelative">
+                        Show relative lift
+                    </label>
+                </div>
             </div>
 
             <article style="width: {{width}}%; background-color: {{bgColor}}; color: {{fgColor}};" class="{{theme}}">
