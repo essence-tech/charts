@@ -30,6 +30,15 @@
             <div class="flex-row controls">
                 <input ng-model="data.question" style="width: 100%">
             </div>
+            <div class="flex-row table-header">
+                <label>Answer choices</label>
+                <label>Control rate</label>
+                <label>Exposed rate</label>
+                <label>Significance color</label>
+                <label>Min lift</label>
+                <label>Absolute lift</label>
+                <label>Max lift</label>
+            </div>
             <div class="flex-row" ng-repeat="answer in data.answers">
                 <input ng-model="data.answers[$index].copy">
                 <input ng-model="data.answers[$index].control">

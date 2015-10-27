@@ -4,7 +4,7 @@
     var perfect = ''+
         '<figure class="perfect flex-col">'+
             '<div class="perfect__header flex-row">'+
-                '<div class="perfect__header--question">Q: {{data.question}}</div>'+
+                '<div class="perfect__header--question"><span ng-show="data.question">Q:</span> {{data.question}}</div>'+
                 '<div class="perfect__header--relative" ng-if="showRelativeLift">Relative lift</div>'+
                 '<div class="perfect__header--observed" ng-class="{wider: !showRelativeLift}">Absolute lift</div>'+
                 '<div class="perfect__header--range" ng-class="{wider: !showRelativeLift}">Lift range</div>'+
@@ -53,7 +53,34 @@
                         if (c.control > r) r = parseFloat(c.control);
                         if (c.exposed > r) r = parseFloat(c.exposed);
                         return r;
-                    }, -100) + 10.0;
+                    }, -100);
+
+                    if ($s.maxPercent > 10) {
+                        $s.maxPercent += 10;
+                    } else if ($s.maxPercent > 1) {
+                        $s.maxPercent += 1;
+                    } else if ($s.maxPercent > 0.1) {
+                        $s.maxPercent += 0.1;
+                        $s.barDec = 1;
+                    } else if ($s.maxPercent > 0.01) {
+                        $s.maxPercent += 0.01;
+                        $s.barDec = 2;
+                    } else if ($s.maxPercent > 0.001) {
+                        $s.maxPercent += 0.001;
+                        $s.barDec = 3;
+                    } else if ($s.maxPercent > 0.0001) {
+                        $s.maxPercent += 0.0001;
+                        $s.barDec = 4;
+                    } else if ($s.maxPercent > 0.00001) {
+                        $s.maxPercent += 0.00001;
+                        $s.barDec = 5;
+                    } else if ($s.maxPercent > 0.000001) {
+                        $s.maxPercent += 0.000001;
+                        $s.barDec = 6;
+                    } else if ($s.maxPercent > 0.0000001) {
+                        $s.maxPercent += 0.0000001;
+                        $s.barDec = 7;
+                    }
                 }, true);
             }
         }
@@ -166,6 +193,7 @@
         $s.relativeDec = 1;
         $s.showCircleLabel = true;
         $s.showRelative = true;
+        $s.maxPercentage = 100;
 
         $s.removeAnswer = function (idx) {
             $s.data.answers.splice(idx, 1);

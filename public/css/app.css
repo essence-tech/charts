@@ -40,6 +40,9 @@ body {
     .controls label input, .controls label select {
       margin-left: 1rem; }
 
+.table-header label {
+  width: 12rem; }
+
 .chart-link {
   margin-left: 1rem; }
 
