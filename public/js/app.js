@@ -63,7 +63,7 @@ angular.module('generator').run();
                     if (file.type.match(textType)) {
                         var reader = new FileReader();
                         reader.onload = function (e) {
-                            var data = reader.result.split('\n');
+                            var data = reader.result.split(/\r?\n/);
                             data = data.filter(function (row) { return row.length; }).map(function (row) {
                                 return row.split(',');
                             });
