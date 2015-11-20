@@ -97,8 +97,6 @@
         $s.render = renderer;
 
         $s.width = 100;
-        $s.bgColor = '';
-        $s.fgColor = '';
         $s.theme = '';
         $s.barDec = 1;
         $s.observedDec = 1;

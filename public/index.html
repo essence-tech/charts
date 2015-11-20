@@ -36,12 +36,12 @@
                         <input type="number" min="0" max="100" ng-model="width">
                     </label>
                     <label>
-                        Background color
-                        <input ng-model="bgColor">
+                        Show circle label
+                        <input type="checkbox" ng-model="showCircleLabel">
                     </label>
                     <label>
-                        Foreground color
-                        <input ng-model="fgColor">
+                        Show relative lift
+                        <input type="checkbox" ng-model="showRelative">
                     </label>
                 </div>
                 <div class="flex-col controls">
@@ -57,14 +57,6 @@
                         Relative decimals
                         <input type="number" ng-model="relativeDec">
                     </label>
-                    <label>
-                        Show circle label
-                        <input type="checkbox" ng-model="showCircleLabel">
-                    </label>
-                    <label>
-                        Show relative lift
-                        <input type="checkbox" ng-model="showRelative">
-                    </label>
                 </div>
             </div>
 
@@ -73,7 +65,7 @@
             </div>
 
             <div id="render-me" style="width: {{width}}%">
-                <article style="background-color: {{bgColor}}; color: {{fgColor}};" class="{{theme}} align-middle">
+                <article class="{{theme}} align-middle">
                     <perfect data="data" bar-dec="barDec" observed-dec="observedDec" relative-dec="relativeDec" show-circle-label="showCircleLabel" show-relative-lift="showRelative"></perfect>
                 </article>
             </dib>
