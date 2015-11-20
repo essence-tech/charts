@@ -72,8 +72,8 @@
                 <a class="button" href="" ng-click="render(data.question)">Download chart</a>
             </div>
 
-            <div id="render-me">
-                <article style="width: {{width}}%; background-color: {{bgColor}}; color: {{fgColor}};" class="{{theme}} align-middle">
+            <div id="render-me" style="width: {{width}}%">
+                <article style="background-color: {{bgColor}}; color: {{fgColor}};" class="{{theme}} align-middle">
                     <perfect data="data" bar-dec="barDec" observed-dec="observedDec" relative-dec="relativeDec" show-circle-label="showCircleLabel" show-relative-lift="showRelative"></perfect>
                 </article>
             </dib>
