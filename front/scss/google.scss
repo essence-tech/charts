@@ -1,14 +1,12 @@
 .google {
-    progress {
-        &.control {
-            &::-webkit-progress-value {
-                background-color: #ddd;
-            }
+    .control {
+        .progress-value {
+            background-color: #ddd;
         }
-        &.exposed {
-            &::-webkit-progress-value {
-                background-color: #4285f4;
-            }
+    }
+    .exposed {
+        .progress-value {
+            background-color: #4285f4;
         }
     }
 

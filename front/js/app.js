@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('generator', ['perfect']);
+angular.module('generator', ['perfect', 'csvMagic']);
 angular.module('generator').run();
 

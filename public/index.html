@@ -11,50 +11,16 @@
         <link rel="stylesheet" type="text/css" href="/css/app.min.css?v=3">
     </head>
     <body>
-        <section ng-controller="perfect" class="flex-col align-middle">
-            <div class="flex-row">
-                <label>
-                    Chart name
-                    <input ng-model="name" placeholder="Name the chart">
-                </label>
-            </div>
+        <header>
+            <div class="logo"></div>
+            <div>Charts</div>
+        </header>
+        <main ng-controller="perfect" class="flex-col">
             <div class="flex-row controls">
-                <span class="chart-link" ng-repeat="key in charts track by $index">
-                    <button ng-click="changeChart(key)">{{key}}</button>
-                </span>
-            </div>
-            <div class="flex-row controls">
-                <button ng-click="clearCharts()">Clear Charts</button>
+                <csv-magic question="data.question" answers="data.answers"></csv-magic>
             </div>
 
-            <div class="flex-row controls">
-                <input ng-model="data.question" style="width: 100%">
-            </div>
-            <div class="flex-row table-header">
-                <label>Answer choices</label>
-                <label>Control rate</label>
-                <label>Exposed rate</label>
-                <label>Significance color</label>
-                <label>Min lift</label>
-                <label>Absolute lift</label>
-                <label>Max lift</label>
-            </div>
-            <div class="flex-row" ng-repeat="answer in data.answers">
-                <input ng-model="data.answers[$index].copy">
-                <input ng-model="data.answers[$index].control">
-                <input ng-model="data.answers[$index].exposed">
-                <input ng-model="data.answers[$index].color">
-                <input ng-model="data.answers[$index].range[0]">
-                <input ng-model="data.answers[$index].range[1]">
-                <input ng-model="data.answers[$index].range[2]">
-                <button ng-click="removeAnswer($index)">X</button>
-            </div>
-
-            <div class="controls">
-                <button ng-click="addAnswer()">+Answer</button>
-            </div>
-
-            <div class="flex-row">
+            <div class="flex-row control-panel align-middle">
                 <div class="flex-col controls">
                     <label>
                         Theme
@@ -92,21 +58,28 @@
                         <input type="number" ng-model="relativeDec">
                     </label>
                     <label>
-                        <input type="checkbox" ng-model="showCircleLabel">
                         Show circle label
+                        <input type="checkbox" ng-model="showCircleLabel">
                     </label>
                     <label>
-                        <input type="checkbox" ng-model="showRelative">
                         Show relative lift
+                        <input type="checkbox" ng-model="showRelative">
                     </label>
                 </div>
             </div>
 
-            <article style="width: {{width}}%; background-color: {{bgColor}}; color: {{fgColor}};" class="{{theme}}">
-                <perfect data="data" bar-dec="barDec" observed-dec="observedDec" relative-dec="relativeDec" show-circle-label="showCircleLabel" show-relative-lift="showRelative"></perfect>
-            </article>
-        </section>
+            <div class="control-panel flex-row">
+                <a class="button" href="" ng-click="render(data.question)">Download chart</a>
+            </div>
 
+            <div id="render-me">
+                <article style="width: {{width}}%; background-color: {{bgColor}}; color: {{fgColor}};" class="{{theme}} align-middle">
+                    <perfect data="data" bar-dec="barDec" observed-dec="observedDec" relative-dec="relativeDec" show-circle-label="showCircleLabel" show-relative-lift="showRelative"></perfect>
+                </article>
+            </dib>
+        </main>
+
+        <script src="/vendor/d2i.min.js"></script>
         <script src="/components/angular/angular.min.js"></script>
         <script src="/js/app.min.js"></script>
     </body>

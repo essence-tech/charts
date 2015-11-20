@@ -1,10 +1,9 @@
 figure {
     box-shadow: $shadow;
     border-radius: 3px;
-    margin: 0;
     background: #fefefe;
     color: #000;
-    margin-bottom: 10rem;
+    margin: .5rem;
 
     .perfect__header {
         padding: 1rem 0;
@@ -62,31 +61,6 @@ figure {
                     font-weight: 300;
                     font-size: .8rem;
                 }
-
-                progress {
-                    position: relative;
-
-                    -webkit-appearance: none;
-                    -moz-appearance: none;
-                    appearance: none;
-
-                    border: none;
-                    display: block;
-                    width: 100%;
-                    height: 1rem;
-                    margin: .25rem;
-
-                    &::-webkit-progress-bar {
-                        background-color: transparent;
-                        border-radius: 3px;
-                    }
-
-                    &::-webkit-progress-value {
-                        background-color: rgba(0,0,0,.1);
-                        border-radius: 3px;
-                        box-shadow: $shadow;
-                    }
-                }
             }
         }
 
@@ -120,3 +94,20 @@ figure {
     }
 }
 
+.progress-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+    height: 1rem;
+    margin: .25rem;
+    background: transparent;
+    border-radius: 3px;
+}
+
+.progress-value {
+    display: block;
+    height: 100%;
+    background-color: rgba(0,0,0,.1);
+    border-radius: 3px;
+}

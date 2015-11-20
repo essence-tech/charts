@@ -13,11 +13,11 @@
                 '<div class="perfect__answer--copy">{{answer.copy}}</div>'+
                 '<div class="perfect__answer--split">'+
                     '<div>'+
-                        '<progress class="control" max="{{maxPercent}}" value="{{answer.control}}"></progress>'+
+                        '<cprogress class="control" max="maxPercent" value="answer.control"></cprogress>'+
                         '<label style="left: {{(answer.control / maxPercent) * 100}}%">{{answer.control | number:barDec}}%</label>'+
                     '</div>'+
                     '<div>'+
-                        '<progress class="exposed" max="{{maxPercent}}" value="{{answer.exposed}}"></progress>'+
+                        '<cprogress class="exposed" max="maxPercent" value="answer.exposed"></cprogress>'+
                         '<label style="left: {{(answer.exposed / maxPercent) * 100}}%">{{answer.exposed | number:barDec}}%</label>'+
                     '</div>'+
                 '</div>'+
@@ -94,95 +94,7 @@
 
     angular.module('perfect').controller('perfect', ['$scope', function ($s) {
 
-        $s.charts = [];
-        function updateCharts() {
-            $s.charts = [];
-            for ( var i=0,len=localStorage.length; i < len; ++i ) {
-                $s.charts.push(localStorage.key(i));
-            }
-        }
-        updateCharts();
-
-        var sessId = window.location.hash.replace('#', '');
-        if (sessId == "") {
-            sessId = 'default';
-        }
-        $s.name = sessId.replace('#', '');;
-
-        var session = localStorage.getItem(sessId);
-
-        if (session == null) {
-            $s.data = {
-                question: 'Which of the following do you associate with Chromebook?',
-                answers: [
-                    {
-                        copy: 'Affordable',
-                        control: 29.2,
-                        exposed: 33.0,
-                        color: 'green',
-                        range: [0, 3.8, 8.3],
-                    },
-                    {
-                        copy: 'Comes pre-loaded with apps',
-                        control: 20.6,
-                        exposed: 23.9,
-                        color: 'green',
-                        range: [0.5, 3.3, 6.4],
-                    },
-                    {
-                        copy: 'Has lots of RAM',
-                        control: 8.9,
-                        exposed: 11.9,
-                        color: 'green',
-                        range: [0.4, 3.0, 6.4],
-                    },
-                    {
-                        copy: 'Lightweight',
-                        control: 34.7,
-                        exposed: 36.4,
-                        color: 'orange',
-                        range: [-2.1, 1.7, 6.1],
-                    },
-                    {
-                        copy: 'Runs Google docs',
-                        control: 35.5,
-                        exposed: 34.5,
-                        color: 'red',
-                        range: [-2.9, -1.0, 4.5],
-                    },
-                    {
-                        copy: 'The laptop from Google',
-                        control: 50.7,
-                        exposed: 54.0,
-                        color: 'green',
-                        range: [0, 3.3, 6.7],
-                    }
-                ]
-            };
-        } else {
-            $s.data = JSON.parse(session);
-        }
-
-        $s.$watch('data', function (n) {
-            localStorage.setItem(sessId, JSON.stringify(n));
-            updateCharts();
-        }, true);
-
-        $s.$watch('name', function (n) {
-            window.location.hash = n;
-            sessId = window.location.hash.replace('#', '');
-        });
-
-        $s.clearCharts = function () {
-            localStorage.clear();
-            window.location.hash = '';
-            window.location.reload();
-        };
-
-        $s.changeChart = function (key) {
-            window.location.hash = key;
-            window.location.reload();
-        };
+        $s.render = renderer;
 
         $s.width = 100;
         $s.bgColor = '';
@@ -194,19 +106,23 @@
         $s.showCircleLabel = true;
         $s.showRelative = true;
         $s.maxPercentage = 100;
-
-        $s.removeAnswer = function (idx) {
-            $s.data.answers.splice(idx, 1);
+        $s.data = {
+            question: '',
+            answers: []
         };
-
-        $s.addAnswer = function () {
-            $s.data.answers.push({
-                copy: 'Placeholder',
-                control: 50,
-                exposed: 50,
-                color: '',
-                range: [0, 0, 0],
-            });
-        }
     }]);
+
+    function renderer(title) {
+        console.log(title);
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+
+        domtoimage.toBlob(document.querySelector('#render-me')).then(function (blob) {
+            var url = window.URL.createObjectURL(blob);
+            a.href = url;
+            a.download = title+'.png';
+            a.click();
+            window.URL.revokeObjectURL(url);
+        });
+    }
 }());

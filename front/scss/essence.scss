@@ -4,16 +4,14 @@
         font-family: Raleway,sans-serif;
     }
 
-    progress {
-        &.control {
-            &::-webkit-progress-value {
-                background-color: #939598;
-            }
+    .control {
+        .progress-value {
+            background-color: #939598;
         }
-        &.exposed {
-            &::-webkit-progress-value {
-                background-color: #00adbb;
-            }
+    }
+    .exposed {
+        .progress-value {
+            background-color: #00adbb;
         }
     }
 

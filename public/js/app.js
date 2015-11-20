@@ -1,8 +1,102 @@
 'use strict';
 
-angular.module('generator', ['perfect']);
+angular.module('generator', ['perfect', 'csvMagic']);
 angular.module('generator').run();
 
+
+(function () {
+    'use strict';
+
+    angular.module('csvMagic', []);
+
+    var magic = ''+
+        '<div class="csv-magic flex-row">'+
+            '<div>'+
+                '<input type="file" id="fileinput">'+
+                '<a href="" ng-click="update()" class="button">Update graph</a>'+
+            '</div>'+
+            '<div>'+
+                '<a id="downloadblank" class="button">Download blank</a>'+
+            '</div>'+
+        '</div>';
+
+    angular.module('csvMagic').directive('csvMagic', [function () {
+        return {
+            replace: true,
+            scope: {
+                question: '=',
+                answers: '='
+            },
+            template: magic,
+            controller: ['$scope', function ($s) {
+                var self = this;
+
+                this.init = function (element) {
+                    self.input = element[0].querySelector('#fileinput');
+                    self.input.onchange = function () {
+                        self.update();
+                    };
+
+                    var blankA = element[0].querySelector('#downloadblank');
+                    createBlank(blankA);
+                };
+
+                var createBlank = function (element) {
+                    var header = [
+                        ['Question', ''],
+                        ['Answer', 'Control rate', 'Exposed rate', 'Significance color', 'Min lift', 'Absolute lift', 'Max lift']
+                    ];
+                    var csvContent = 'data:text/csv;charset=utf-8,';
+                    header.forEach(function (row, index) {
+                        csvContent += index < header.length ? (row.join(',') + '\n') : row.join(',');
+                    });
+                    var encoded = encodeURI(csvContent);
+                    element.setAttribute('href', encoded);
+                    element.setAttribute('download', 'blank_charts.csv');
+                };
+
+                this.update = function () {
+                    if (!(self.input.files.length)) return false;
+                    var file = self.input.files[0];
+                    var textType = /text.*/;
+
+                    if (file.type.match(textType)) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            var data = reader.result.split('\n');
+                            data = data.filter(function (row) { return row.length; }).map(function (row) {
+                                return row.split(',');
+                            });
+                            var converted = convertToAnswers(data);
+                            $s.question = converted[0];
+                            $s.answers = converted[1];
+                        };
+                        reader.readAsText(file);
+                    }
+                };
+
+                var convertToAnswers = function (data) {
+                    var question = data.shift();
+                    data.shift();
+                    return [question[1], data.map(function (row) {
+                        return {
+                            copy: row[0],
+                            control: row[1],
+                            exposed: row[2],
+                            color: row[3],
+                            range: [row[4], row[5], row[6]]
+                        };
+                    })];
+                };
+            }],
+            link: function ($s, element, attrs, ctrl) {
+                ctrl.init(element);
+
+                $s.update = ctrl.update;
+            }
+        };
+    }]);
+})();
 
 (function () {
     angular.module('errorRange', []);
@@ -51,11 +145,11 @@ angular.module('generator').run();
                 '<div class="perfect__answer--copy">{{answer.copy}}</div>'+
                 '<div class="perfect__answer--split">'+
                     '<div>'+
-                        '<progress class="control" max="{{maxPercent}}" value="{{answer.control}}"></progress>'+
+                        '<cprogress class="control" max="maxPercent" value="answer.control"></cprogress>'+
                         '<label style="left: {{(answer.control / maxPercent) * 100}}%">{{answer.control | number:barDec}}%</label>'+
                     '</div>'+
                     '<div>'+
-                        '<progress class="exposed" max="{{maxPercent}}" value="{{answer.exposed}}"></progress>'+
+                        '<cprogress class="exposed" max="maxPercent" value="answer.exposed"></cprogress>'+
                         '<label style="left: {{(answer.exposed / maxPercent) * 100}}%">{{answer.exposed | number:barDec}}%</label>'+
                     '</div>'+
                 '</div>'+
@@ -132,95 +226,7 @@ angular.module('generator').run();
 
     angular.module('perfect').controller('perfect', ['$scope', function ($s) {
 
-        $s.charts = [];
-        function updateCharts() {
-            $s.charts = [];
-            for ( var i=0,len=localStorage.length; i < len; ++i ) {
-                $s.charts.push(localStorage.key(i));
-            }
-        }
-        updateCharts();
-
-        var sessId = window.location.hash.replace('#', '');
-        if (sessId == "") {
-            sessId = 'default';
-        }
-        $s.name = sessId.replace('#', '');;
-
-        var session = localStorage.getItem(sessId);
-
-        if (session == null) {
-            $s.data = {
-                question: 'Which of the following do you associate with Chromebook?',
-                answers: [
-                    {
-                        copy: 'Affordable',
-                        control: 29.2,
-                        exposed: 33.0,
-                        color: 'green',
-                        range: [0, 3.8, 8.3],
-                    },
-                    {
-                        copy: 'Comes pre-loaded with apps',
-                        control: 20.6,
-                        exposed: 23.9,
-                        color: 'green',
-                        range: [0.5, 3.3, 6.4],
-                    },
-                    {
-                        copy: 'Has lots of RAM',
-                        control: 8.9,
-                        exposed: 11.9,
-                        color: 'green',
-                        range: [0.4, 3.0, 6.4],
-                    },
-                    {
-                        copy: 'Lightweight',
-                        control: 34.7,
-                        exposed: 36.4,
-                        color: 'orange',
-                        range: [-2.1, 1.7, 6.1],
-                    },
-                    {
-                        copy: 'Runs Google docs',
-                        control: 35.5,
-                        exposed: 34.5,
-                        color: 'red',
-                        range: [-2.9, -1.0, 4.5],
-                    },
-                    {
-                        copy: 'The laptop from Google',
-                        control: 50.7,
-                        exposed: 54.0,
-                        color: 'green',
-                        range: [0, 3.3, 6.7],
-                    }
-                ]
-            };
-        } else {
-            $s.data = JSON.parse(session);
-        }
-
-        $s.$watch('data', function (n) {
-            localStorage.setItem(sessId, JSON.stringify(n));
-            updateCharts();
-        }, true);
-
-        $s.$watch('name', function (n) {
-            window.location.hash = n;
-            sessId = window.location.hash.replace('#', '');
-        });
-
-        $s.clearCharts = function () {
-            localStorage.clear();
-            window.location.hash = '';
-            window.location.reload();
-        };
-
-        $s.changeChart = function (key) {
-            window.location.hash = key;
-            window.location.reload();
-        };
+        $s.render = renderer;
 
         $s.width = 100;
         $s.bgColor = '';
@@ -232,19 +238,48 @@ angular.module('generator').run();
         $s.showCircleLabel = true;
         $s.showRelative = true;
         $s.maxPercentage = 100;
-
-        $s.removeAnswer = function (idx) {
-            $s.data.answers.splice(idx, 1);
+        $s.data = {
+            question: '',
+            answers: []
         };
-
-        $s.addAnswer = function () {
-            $s.data.answers.push({
-                copy: 'Placeholder',
-                control: 50,
-                exposed: 50,
-                color: '',
-                range: [0, 0, 0],
-            });
-        }
     }]);
+
+    function renderer(title) {
+        console.log(title);
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+
+        domtoimage.toBlob(document.querySelector('#render-me')).then(function (blob) {
+            var url = window.URL.createObjectURL(blob);
+            a.href = url;
+            a.download = title+'.png';
+            a.click();
+            window.URL.revokeObjectURL(url);
+        });
+    }
 }());
+
+(function () {
+    'use strict';
+
+    var progress = ''+
+        '<span class="progress-container">'+
+            '<span class="progress-value"></span>'+
+        '</span>';
+
+    angular.module('perfect').directive('cprogress', [function () {
+        return {
+            scope: {
+                max: '=',
+                value: '='
+            },
+            template: progress,
+            link: function ($s, element, attrs) {
+                var valEl =  element[0].querySelector('.progress-value');
+                $s.$watch('max+value', function () {
+                    valEl.style.width = (($s.value / $s.max) * 100)+'%';
+                });
+            }
+        };
+    }]);
+})();

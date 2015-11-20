@@ -9,6 +9,30 @@ $shadowup: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
+    margin: 0;
+}
+
+header {
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,.26);
+    margin-bottom: 2rem;
+
+    .logo {
+        width: 10rem;
+        height: 5rem;
+        background-image: url(/img/logo.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+}
+
+main {
+    margin: 1rem;
 }
 
 .flex-col {
@@ -20,9 +44,21 @@ body {
     display: flex;
     flex-direction: row;
 }
+.flex-col {
+    flex: 1 0;
+    display: flex;
+    flex-direction: column;
+}
 
 .align-middle {
     align-items: center;
+}
+
+.csv-magic {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .controls {
@@ -40,6 +76,12 @@ body {
     }
 }
 
+.control-panel {
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(0,0,0,.1);
+}
+
 .table-header {
     label {
         width: 12rem;
@@ -50,27 +92,35 @@ body {
     margin-left: 1rem;
 }
 
-input, button {
+input {
     font-family: 'Open Sans', sans-serif;
-    border-radius: 3px;
 }
 
-input, select {
+input {
+    border: none;
+    padding: .5rem;
+    border: 1px solid rgba(0,0,0,.1);
+}
+
+select {
     padding: .5rem;
     border: 0;
     border: 1px solid rgba(0,0,0,.1);
 }
 
-button {
+.button {
     cursor: pointer;
     background-color: white;
+    color: black;
     border: 0;
-    box-shadow: $shadow;
     padding: .5rem;
-    transition: .1s box-shadow ease-in-out;
+    margin: .25rem;
+    text-decoration: none;
+    border: 2px solid #00adbb;
 
     &:hover {
-        box-shadow: $shadowup;
+        background: #00adbb;
+        color: white;
     }
 }
 
