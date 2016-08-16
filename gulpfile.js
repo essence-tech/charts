@@ -17,6 +17,14 @@ gulp.task('js', function () {
         .pipe(gulp.dest('public/js'));
 });
 
+gulp.task('plugin', function () {
+    return gulp.src(['src/chart.js'])
+        .pipe(gulp.dest('public/js'))
+        .pipe(rename('chart.min.js'))
+        .pipe(uglify()).on('error', function (err) { console.log(err) })
+        .pipe(gulp.dest('public/js'));
+});
+
 gulp.task('css', function () {
     var filterCss = filter('**/*.css');
     return sass('front/scss/app.scss').on('error', function (err) { console.log(err.message); })
@@ -32,11 +40,12 @@ gulp.task('css', function () {
         .pipe(gulp.dest('public/css'));
 });
 
-gulp.task('build-front', ['js', 'css']);
+gulp.task('build-front', ['js', 'css', 'plugin']);
 
 gulp.task('dev', ['build-front'], function (done) {
     gulp.watch('front/**/*.js', ['js']);
     gulp.watch('front/**/*.scss', ['css']);
+    gulp.watch('src/chart.js', ['plugin']);
 });
 
 gulp.task('default', ['dev']);
