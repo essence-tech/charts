@@ -17,12 +17,24 @@ gulp.task('js', function () {
         .pipe(gulp.dest('public/js'));
 });
 
-gulp.task('plugin', function () {
+gulp.task('plugin-js', function () {
     return gulp.src(['src/chart.js'])
         .pipe(gulp.dest('public/js'))
         .pipe(rename('chart.min.js'))
         .pipe(uglify()).on('error', function (err) { console.log(err) })
         .pipe(gulp.dest('public/js'));
+});
+
+gulp.task('plugin-css', function () {
+    return gulp.src(['src/chart.css'])
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
+        .pipe(gulp.dest('public/css'))
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(minifycss().on('error', function (err) { console.log(err); }))
+        .pipe(gulp.dest('public/css'));
 });
 
 gulp.task('css', function () {
@@ -40,12 +52,13 @@ gulp.task('css', function () {
         .pipe(gulp.dest('public/css'));
 });
 
-gulp.task('build-front', ['js', 'css', 'plugin']);
+gulp.task('build-front', ['js', 'css', 'plugin-js', 'plugin-css']);
 
 gulp.task('dev', ['build-front'], function (done) {
     gulp.watch('front/**/*.js', ['js']);
     gulp.watch('front/**/*.scss', ['css']);
-    gulp.watch('src/chart.js', ['plugin']);
+    gulp.watch('src/chart.js', ['plugin-js']);
+    gulp.watch('src/chart.css', ['plugin-css']);
 });
 
 gulp.task('default', ['dev']);

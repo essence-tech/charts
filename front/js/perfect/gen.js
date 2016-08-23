@@ -111,7 +111,6 @@
     }]);
 
     function renderer(title) {
-        console.log(title);
         var a = document.createElement("a");
         document.body.appendChild(a);
 

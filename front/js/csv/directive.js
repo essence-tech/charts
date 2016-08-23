@@ -56,11 +56,9 @@
                     var reader = new FileReader();
                     reader.onload = function (e) {
                         var data = reader.result.split(/\r?\n/);
-                        console.log('Init', data);
                         data = data.filter(function (row) { return row.length; }).map(function (row) {
                             return row.split(',');
                         });
-                        console.log('Split', data);
                         var converted = convertToAnswers(data);
                         $s.question = converted[0];
                         $s.answers = converted[1];
