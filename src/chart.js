@@ -1,15 +1,6 @@
 (function () {
     'use strict';
 
-    // Scrutineer brand colors.
-    var COLORS = [
-        "39679e", "b8e446", "f1674a", "36af63",
-        "134580", "89b80e", "c32e0f", "0b8d3c",
-        "235897", "a7da24", "e64827", "1ca750",
-        "527bad", "cbf267", "ff866d", "51be79",
-        "789bc5", "d9f68d"
-    ];
-
     /**
      * Generate a Scrutineer question chart.
      * @constructor
@@ -81,6 +72,15 @@
 
         return header;
     }
+
+    // Scrutineer brand colors.
+    var COLORS = [
+        "39679e", "b8e446", "f1674a", "36af63",
+        "134580", "89b80e", "c32e0f", "0b8d3c",
+        "235897", "a7da24", "e64827", "1ca750",
+        "527bad", "cbf267", "ff866d", "51be79",
+        "789bc5", "d9f68d"
+    ];
 
     /**
      * Generate an answer row.
