@@ -19,10 +19,10 @@ gulp.task('js', function () {
 
 gulp.task('plugin-js', function () {
     return gulp.src(['src/chart.js'])
-        .pipe(gulp.dest('public/js'))
+        .pipe(gulp.dest('dist'))
         .pipe(rename('chart.min.js'))
         .pipe(uglify()).on('error', function (err) { console.log(err) })
-        .pipe(gulp.dest('public/js'));
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('plugin-css', function () {
@@ -31,10 +31,10 @@ gulp.task('plugin-css', function () {
             browsers: ['last 2 versions'],
             cascade: false
         }))
-        .pipe(gulp.dest('public/css'))
+        .pipe(gulp.dest('dist'))
         .pipe(rename({ suffix: '.min' }))
         .pipe(minifycss().on('error', function (err) { console.log(err); }))
-        .pipe(gulp.dest('public/css'));
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('css', function () {
