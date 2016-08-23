@@ -132,8 +132,7 @@
 .sqc__a__range--val::after {
     content: attr(display);
     position: absolute;
-    top: 1rem;
-    left: -50%;
+    top: -1rem;
     font-size: .8rem;
 }
 /**
