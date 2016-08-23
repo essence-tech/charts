@@ -6,10 +6,10 @@
 
 Include in your template
 ```
-<link rel="stylesheet" type="text/css" href="//raw.githubusercontent.com/essence-tech/charts/master/dist/chart.min.css" />
+<link rel="stylesheet" type="text/css" href="//rawgit.com/essence-tech/charts/master/dist/chart.min.css" />
 ```
 ```
-<script src="//raw.githubusercontent.com/essence-tech/charts/master/dist/chart.min.js"></script>
+<script src="//rawgit.com/essence-tech/charts/master/dist/chart.min.js"></script>
 ```
 
 Then to instantiate a chart:
