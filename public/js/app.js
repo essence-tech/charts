@@ -62,11 +62,9 @@ angular.module('generator').run();
                     var reader = new FileReader();
                     reader.onload = function (e) {
                         var data = reader.result.split(/\r?\n/);
-                        console.log('Init', data);
                         data = data.filter(function (row) { return row.length; }).map(function (row) {
                             return row.split(',');
                         });
-                        console.log('Split', data);
                         var converted = convertToAnswers(data);
                         $s.question = converted[0];
                         $s.answers = converted[1];
@@ -242,7 +240,6 @@ angular.module('generator').run();
     }]);
 
     function renderer(title) {
-        console.log(title);
         var a = document.createElement("a");
         document.body.appendChild(a);
 
@@ -276,6 +273,39 @@ angular.module('generator').run();
                 $s.$watch('max+value', function () {
                     valEl.style.width = (($s.value / $s.max) * 100)+'%';
                 });
+            }
+        };
+    }]);
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('perfect').directive('scrChart', [function () {
+        return {
+            scope: {
+                data: '='
+            },
+            link: function ($s, element, attrs) {
+                $s.$watch('data', function (o, n) {
+                    console.log($s.data, o, n);
+
+                    var answers = $s.data.answers.map(function (a) {
+                        return {
+                            title: a.copy,
+                            percentages: [a.control, a.exposed],
+                            minLift: a.range[0],
+                            absLift: a.range[1],
+                            maxLift: a.range[2]
+                        };
+                    });
+                    var series =  ['Control', 'Exposed'];
+                    var totals = [127, 364];
+
+                    element.empty();
+                    var chart = new ScrutineerQuestionChart($s.data.question, series, totals, answers, {});
+                    element.append(chart);
+                }, true);
             }
         };
     }]);

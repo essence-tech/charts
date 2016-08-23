@@ -7,21 +7,18 @@ body {
   font-weight: 300;
   margin: 0; }
 
-header {
+header.nav {
   height: 5rem;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-justify-content: flex-start;
   -ms-flex-pack: start;
   justify-content: flex-start;
   background: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
   margin-bottom: 2rem; }
-  header .logo {
+  header.nav .logo {
     width: 10rem;
     height: 5rem;
     background-image: url(/img/logo.png);
@@ -33,46 +30,35 @@ main {
   margin: 1rem; }
 
 .flex-col {
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column; }
 
 .flex-row {
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row; }
 
 .flex-col {
-  -webkit-flex: 1 0;
   -ms-flex: 1 0;
   flex: 1 0;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column; }
 
 .align-middle {
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center; }
 
 .csv-magic {
   width: 100%;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between; }
 
@@ -80,10 +66,8 @@ main {
   margin-bottom: 1rem; }
   .controls label {
     padding: .5rem;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
     margin: 0 3rem; }
@@ -127,90 +111,77 @@ select {
     background: #00adbb;
     color: white; }
 
-figure {
+figure.perfect {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   border-radius: 3px;
   background: #fefefe;
   color: #000;
   margin: .5rem; }
-  figure .perfect__header {
+  figure.perfect .perfect__header {
     padding: 1rem 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
-    figure .perfect__header--question {
-      -webkit-flex: 1 0 60%;
+    figure.perfect .perfect__header--question {
       -ms-flex: 1 0 60%;
       flex: 1 0 60%;
       padding: 0 1rem; }
-    figure .perfect__header--observed {
-      -webkit-flex: 1 0 10%;
+    figure.perfect .perfect__header--observed {
       -ms-flex: 1 0 10%;
       flex: 1 0 10%;
       text-align: center;
       padding: 0 1rem; }
-      figure .perfect__header--observed.wider {
-        -webkit-flex: 1 0 15%;
+      figure.perfect .perfect__header--observed.wider {
         -ms-flex: 1 0 15%;
         flex: 1 0 15%; }
-    figure .perfect__header--relative {
-      -webkit-flex: 1 0 10%;
+    figure.perfect .perfect__header--relative {
       -ms-flex: 1 0 10%;
       flex: 1 0 10%;
       text-align: center;
       padding: 0 1rem; }
-    figure .perfect__header--range {
-      -webkit-flex: 1 0 20%;
+    figure.perfect .perfect__header--range {
       -ms-flex: 1 0 20%;
       flex: 1 0 20%;
       text-align: center;
       padding: 0 1rem; }
-      figure .perfect__header--range.wider {
-        -webkit-flex: 1 0 25%;
+      figure.perfect .perfect__header--range.wider {
         -ms-flex: 1 0 25%;
         flex: 1 0 25%; }
-  figure .perfect__answer--copy {
-    -webkit-flex: 1 0 20%;
+  figure.perfect .perfect__answer--copy {
     -ms-flex: 1 0 20%;
     flex: 1 0 20%;
     padding: 1rem; }
-  figure .perfect__answer--split {
-    -webkit-flex: 1 0 40%;
+  figure.perfect .perfect__answer--split {
     -ms-flex: 1 0 40%;
     flex: 1 0 40%;
     padding: 1rem; }
-    figure .perfect__answer--split div {
+    figure.perfect .perfect__answer--split div {
       position: relative; }
-      figure .perfect__answer--split div label {
+      figure.perfect .perfect__answer--split div label {
         position: absolute;
         top: 0;
         margin-left: 1rem;
         font-weight: 300;
         font-size: .8rem; }
-  figure .perfect__answer--observed {
-    -webkit-flex: 1 0 10%;
+  figure.perfect .perfect__answer--observed {
     -ms-flex: 1 0 10%;
     flex: 1 0 10%;
     padding: 1rem;
     text-align: center;
     font-size: 1.5rem; }
-    figure .perfect__answer--observed.wider {
-      -webkit-flex: 1 0 15%;
+    figure.perfect .perfect__answer--observed.wider {
       -ms-flex: 1 0 15%;
       flex: 1 0 15%; }
-  figure .perfect__answer--relative {
-    -webkit-flex: 1 0 10%;
+  figure.perfect .perfect__answer--relative {
     -ms-flex: 1 0 10%;
     flex: 1 0 10%;
     padding: 1rem;
     text-align: center;
     font-size: 1.5rem; }
-  figure .perfect__answer--range {
-    -webkit-flex: 1 0 20%;
+  figure.perfect .perfect__answer--range {
     -ms-flex: 1 0 20%;
     flex: 1 0 20%;
     padding: 1rem;
     text-align: center; }
-    figure .perfect__answer--range.wider {
-      -webkit-flex: 1 0 25%;
+    figure.perfect .perfect__answer--range.wider {
       -ms-flex: 1 0 25%;
       flex: 1 0 25%; }
 
@@ -245,7 +216,6 @@ figure {
       right: -1rem;
       font-size: .8rem; }
   .essrange__bar {
-    -webkit-flex: 1 0 auto;
     -ms-flex: 1 0 auto;
     flex: 1 0 auto;
     border-left: 2px solid rgba(0, 0, 0, 0.2);
