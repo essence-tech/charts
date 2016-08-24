@@ -22,8 +22,7 @@
      */
     var ScrutineerQuestionChart = function (title, series, totals, answers, options) {
         // Main container.
-        var figure = document.createElement('figure');
-        figure.className = 'sqc';
+        var figure = createElement('figure', 'sqc');
 
         // Header.
         var header = generateQuestionHeader(title);
@@ -55,19 +54,14 @@
      * @returns {Element} The header element.
      */
     function generateQuestionHeader(title) {
-        var header = document.createElement('header');
-        header.className = 'sqc__h';
+        var header = createElement('header', 'sqc__h');
 
         // Question
-        var q = document.createElement('div');
-        q.className = 'sqc__h--question';
-        q.innerHTML = 'Q: '+title;
+        var q = createElement('div', 'sqc__h--question', 'Q: '+title);
         header.appendChild(q);
 
         // Lift
-        var l = document.createElement('div');
-        l.className = 'sqc__h--range';
-        l.innerHTML = 'Lift range';
+        var l = createElement('div', 'sqc__h--range', 'Lift range');
         header.appendChild(l);
 
         return header;
@@ -75,11 +69,11 @@
 
     // Scrutineer brand colors.
     var COLORS = [
-        "39679e", "b8e446", "f1674a", "36af63",
-        "134580", "89b80e", "c32e0f", "0b8d3c",
-        "235897", "a7da24", "e64827", "1ca750",
-        "527bad", "cbf267", "ff866d", "51be79",
-        "789bc5", "d9f68d"
+        "#39679e", "#b8e446", "#f1674a", "#36af63",
+        "#134580", "#89b80e", "#c32e0f", "#0b8d3c",
+        "#235897", "#a7da24", "#e64827", "#1ca750",
+        "#527bad", "#cbf267", "#ff866d", "#51be79",
+        "#789bc5", "#d9f68d"
     ];
 
     /**
@@ -100,28 +94,22 @@
      */
     function generateQuestionAnswer(answer, minLift, maxLift, maxResult) {
         // Answer container.
-        var a = document.createElement('div');
-        a.className = 'sqc__a';
+        var a = createElement('div', 'sqc__a');
 
         // Answer title.
-        var c = document.createElement('div');
-        c.className = 'sqc__a--title';
-        c.innerHTML = answer.title;
+        var c = createElement('div', 'sqc__a--title', answer.title);
         a.appendChild(c);
 
         // Answer bars.
-        var b = document.createElement('div');
-        b.className = 'sqc__a--bars';
+        var b = createElement('div', 'sqc__a--bars');
         for (var i=0,len=answer.percentages.length; i < len; i++) {
             var barBlock = document.createElement('div');
 
-            var barContainer = document.createElement('span');
-            barContainer.className = 'sqc__progress-container';
+            var barContainer = createElement('span', 'sqc__progress-container');
 
-            var bar = document.createElement('span');
-            bar.className = 'sqc__progress-value';
+            var bar = createElement('span', 'sqc__progress-value');
             bar.style.width = ((answer.percentages[i] / maxResult) * 100) + '%';
-            bar.style.backgroundColor = '#'+COLORS[i];
+            bar.style.backgroundColor = COLORS[i];
             barContainer.appendChild(bar);
 
             var label = document.createElement('label');
@@ -136,31 +124,25 @@
 
         // Lift range.
         var range = maxLift - minLift;
-        var minWidth = ((answer.minLift - minLift) / range) * 100;
-        var maxWidth = ((maxLift - answer.maxLift) / range) * 100;
-        var valPos = ((answer.absLift - minLift) / range) * 100;
+        var minWidth = ((parseFloat(answer.minLift) - minLift) / range) * 100;
+        var maxWidth = ((maxLift - parseFloat(answer.maxLift)) / range) * 100;
+        var valPos = ((parseFloat(answer.absLift) - minLift) / range) * 100;
 
-        var l = document.createElement('div');
-        l.className = 'sqc__a--range';
+        var l = createElement('div', 'sqc__a--range');
 
-        var f = document.createElement('figure');
-        f.className = 'sqc__a__range';
+        var f = createElement('figure', 'sqc__a__range');
 
-        var min = document.createElement('div');
-        min.className = 'sqc__a__range--min';
+        var min = createElement('div', 'sqc__a__range--min');
         min.style.flex = '0 1 '+minWidth+'%';
         min.setAttribute('display', answer.minLift+'%');
 
-        var line = document.createElement('div');
-        line.className = 'sqc__a__range--line';
+        var line = createElement('div', 'sqc__a__range--line');
 
-        var max = document.createElement('div');
-        max.className = 'sqc__a__range--max';
+        var max = createElement('div', 'sqc__a__range--max');
         max.style.flex = '0 1 '+maxWidth+'%';
         max.setAttribute('display', answer.maxLift+'%');
 
-        var val = document.createElement('div');
-        val.className = 'sqc__a__range--val';
+        var val = createElement('div', 'sqc__a__range--val');
         val.style.left = 'calc('+valPos+'% - .5rem)';
         val.setAttribute('display', answer.absLift+'%');
 
@@ -182,15 +164,13 @@
      * @returns {Element} A footer element.
      */
     function generateQuestionFooter(series, totals) {
-        var footer = document.createElement('footer');
-        footer.className = 'sqc__f';
+        var footer = createElement('footer', 'sqc__f');
 
         for (var i=0,len=series.length; i < len; i++) {
-            var s = document.createElement('div');
-            s.className = 'sqc__f__s';
+            var s = createElement('div', 'sqc__f__s');
 
             var icon = document.createElement('i');
-            icon.style.backgroundColor = '#'+COLORS[i];
+            icon.style.backgroundColor = COLORS[i];
 
             var name = document.createElement('span');
             name.innerHTML = series[i]+', n='+totals[i];
@@ -263,6 +243,22 @@
             mp += 0.0000001;
         }
         return mp;
+    }
+
+    /**
+     * Create an element with a class.
+     *
+     * @param {String} element The element type.
+     * @param {String} cls The class.
+     * @param {String} content What to set the innerHTML to.
+     *
+     * @returns {Element} A newly created element.
+     */
+    function createElement(element, cls, content) {
+        var e = document.createElement(element);
+        e.className = cls;
+        if (content) e.innerHTML = content;
+        return e;
     }
 
     // Make it available.
