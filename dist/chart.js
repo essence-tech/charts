@@ -61,7 +61,7 @@
         header.appendChild(q);
 
         // Lift
-        var l = createElement('div', 'sqc__h--range', 'Lift range');
+        var l = createElement('div', 'sqc__h--range', 'Absolute Lift Range');
         header.appendChild(l);
 
         return header;
