@@ -42,7 +42,7 @@
 .sqc .sqc__a .sqc__a--bars {
     box-sizing: border-box;
     flex: 1 0 50%;
-    padding: 1rem;
+    padding: .25rem;
 }
 .sqc .sqc__a .sqc__a--bars div {
     position: relative;
