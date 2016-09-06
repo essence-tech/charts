@@ -28,6 +28,9 @@
         var header = generateQuestionHeader(title);
         figure.appendChild(header);
 
+        // Normalize answers.
+        answers = normamlizeAnswers(answers);
+
         // Create answer information.
         var maxLift = getMaxLift(answers);
         var minLift = getMinLift(answers);
@@ -45,6 +48,24 @@
 
         return figure;
     };
+
+    /**
+     * Normalize answers, which could come in different formats.
+     *
+     * @param {Object[]} answers Question answer data.
+     *
+     * @returns {Object[]} Normalized answers.
+     */
+    function normamlizeAnswers(answers) {
+        return answers.map(function (answer) {
+            ['minLift', 'absLift', 'maxLift'].map(function (key) {
+                if (!Array.isArray(answer[key])) {
+                    answer[key] = [answer[key]];
+                }
+            });
+            return answer;
+        });
+    }
 
     /**
      * Generate the question header bar
@@ -73,7 +94,7 @@
         "#134580", "#89b80e", "#c32e0f", "#0b8d3c",
         "#235897", "#a7da24", "#e64827", "#1ca750",
         "#527bad", "#cbf267", "#ff866d", "#51be79",
-        "#789bc5", "#d9f68d"
+        "#789bc5", "#d9f68d",
     ];
 
     /**
@@ -83,9 +104,9 @@
      * @param {String} answer.title An answer title.
      * @param {String[]} answer.series The series names.
      * @param {Number[]} answer.percentages The percentages per series for this answer.
-     * @param {Number} answer.minLift The minimum lift for this answer.
-     * @param {Number} answer.absLift The absolute lift for this answer.
-     * @param {Number} answer.maxLift The maximum lift for this answer.
+     * @param {Number[]} answer.minLift The minimum lift for this answer.
+     * @param {Number[]} answer.absLift The absolute lift for this answer.
+     * @param {Number[]} answer.maxLift The maximum lift for this answer.
      * @param {Number} minLift The minimum lift overall.
      * @param {Number} maxLift The maximum lift overall.
      * @param {Number} maxResult The maximum result overall.
@@ -102,58 +123,108 @@
 
         // Answer bars.
         var b = createElement('div', 'sqc__a--bars');
-        for (var i=0,len=answer.percentages.length; i < len; i++) {
-            var barBlock = document.createElement('div');
 
-            var barContainer = createElement('span', 'sqc__progress-container');
+        // Answer lift.
+        var l = createElement('div', 'sqc__a--range');
 
-            var bar = createElement('span', 'sqc__progress-value');
-            bar.style.width = ((answer.percentages[i] / maxResult) * 100) + '%';
-            bar.style.backgroundColor = COLORS[i];
-            barContainer.appendChild(bar);
+        // Create pairs of branches.
+        for (var idx=1,branches=answer.percentages.length;idx < branches; idx++) {
+            // Pair
+            var p = createElement('div', 'sqc__a__bars');
 
-            var label = document.createElement('label');
-            label.style.left = ((answer.percentages[i] / maxResult) * 100) + '%';
-            label.innerHTML = answer.percentages[i] + '%';
-            barContainer.appendChild(label);
+            // Control
+            p.appendChild(createAnswerBar(0, answer.percentages[0], maxResult));
 
-            barBlock.appendChild(barContainer);
-            b.appendChild(barBlock);
+            // Exposed branch
+            p.appendChild(createAnswerBar(idx, answer.percentages[idx], maxResult));
+
+            b.appendChild(p);
+
+            // Lift range
+            l.appendChild(createLiftRange(answer.minLift[idx-1], answer.maxLift[idx-1], answer.absLift[idx-1], minLift, maxLift));
         }
-        a.appendChild(b);
 
+        a.appendChild(b);
+        a.appendChild(l);
+
+        return a;
+    }
+
+    /**
+     * Creates a bar and its label.
+     *
+     * @param {Number} idx Index of bar, for colors.
+     * @param {Number} percentage What percentage this bar is.
+     * @param {Number} maxResult The highest percentage from all answers to keep scale.
+     *
+     * @returns {Element} The bar element.
+     */
+    function createAnswerBar(idx, percentage, maxResult) {
+        var barBlock = createElement('div', 'sqc__progress-block');
+        var barContainer = createElement('span', 'sqc__progress-container');
+        var bar = createElement('span', 'sqc__progress-value');
+
+        bar.style.width = ((percentage / maxResult) * 100) + '%';
+        bar.style.backgroundColor = COLORS[idx];
+        barContainer.appendChild(bar);
+
+        var label = document.createElement('label');
+        label.style.left = ((percentage / maxResult) * 100) + '%';
+        label.innerHTML = percentage + '%';
+        barContainer.appendChild(label);
+
+        barBlock.appendChild(barContainer);
+
+        return barBlock;
+    }
+
+    /**
+     * Creates the lift range representation.
+     *
+     * @param {Number} thisMinLift This answers minimum lift value.
+     * @param {Number} thisMaxLift This answers maximum lift value.
+     * @param {Number} thisAbsLift This answers absolute lift value.
+     * @param {Number} minLift The overall mimimum lift value for all answers to keep scale.
+     * @param {Number} maxLift The overall maximum lift value for all answers to keep scale.
+     *
+     * @returns {Element} The lift range element.
+     */
+    function createLiftRange(thisMinLift, thisMaxLift, thisAbsLift, minLift, maxLift) {
         // Lift range.
         var range = maxLift - minLift;
-        var minWidth = ((parseFloat(answer.minLift) - minLift) / range) * 100;
-        var maxWidth = ((maxLift - parseFloat(answer.maxLift)) / range) * 100;
-        var valPos = ((parseFloat(answer.absLift) - minLift) / range) * 100;
+        var minWidth = ((parseFloat(thisMinLift) - minLift) / range) * 100;
+        var maxWidth = ((maxLift - parseFloat(thisMaxLift)) / range) * 100;
+        var valPos = ((parseFloat(thisAbsLift) - minLift) / range) * 100;
 
-        var l = createElement('div', 'sqc__a--range');
+        var c = createElement('div', 'sqc__a__range--container');
 
         var f = createElement('figure', 'sqc__a__range');
 
+        // Min part
         var min = createElement('div', 'sqc__a__range--min');
         min.style.flex = '0 1 '+minWidth+'%';
-        min.setAttribute('display', answer.minLift+'%');
+        min.setAttribute('display', thisMinLift+'%');
 
+        // Range line
         var line = createElement('div', 'sqc__a__range--line');
 
+        // Max part
         var max = createElement('div', 'sqc__a__range--max');
         max.style.flex = '0 1 '+maxWidth+'%';
-        max.setAttribute('display', answer.maxLift+'%');
+        max.setAttribute('display', thisMaxLift+'%');
 
+        // Abs part
         var val = createElement('div', 'sqc__a__range--val');
         val.style.left = 'calc('+valPos+'% - .5rem)';
-        val.setAttribute('display', answer.absLift+'%');
+        val.setAttribute('display', thisAbsLift+'%');
 
         f.appendChild(min);
         f.appendChild(line);
         f.appendChild(max);
         f.appendChild(val);
-        l.appendChild(f);
-        a.appendChild(l);
+        c.appendChild(f);
 
-        return a;
+        return c;
     }
 
     /**
@@ -192,7 +263,9 @@
      */
     function getMaxLift(answers) {
         var _mr = answers.reduce(function (r, c) {
-            return (parseFloat(c.maxLift) > r) ? parseFloat(c.maxLift) : r;
+            return c.maxLift.reduce(function (red, cur) {
+                return (parseFloat(cur) > red) ? parseFloat(cur) : red;
+            }, r);
         }, -100);
         return _mr + (_mr * 0.1);
     }
@@ -206,7 +279,9 @@
      */
     function getMinLift(answers) {
         return answers.reduce(function (r, c) {
-            return (parseFloat(c.minLift) < r) ? parseFloat(c.minLift) : r;
+            return c.minLift.reduce(function (red, cur) {
+                return (parseFloat(cur) < red) ? parseFloat(cur) : red;
+            }, r);
         }, 100);
     }
 

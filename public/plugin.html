@@ -1,40 +1,83 @@
 <!doctype html>
 <html>
     <head>
+        <link href="https://fonts.googleapis.com/css?family=Athiti" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/chart.min.css" />
     </head>
     <body>
+<style>
+body {
+    font-family: 'Athiti', sans-serif;
+}
+</style>
         <script type="text/javascript" src="/chart.min.js"></script>
         <script>
-var question = 'This is a question title?';
-var series = ['Control', 'Exposed'];
-var totals = [123, 215];
-var answers = [
-  {
-    title: 'Answer 1',
-    percentages: [21, 54],
-    minLift: 1,
-    absLift: 2,
-    maxLift: 3
-  },
-  {
-    title: 'Answer 2',
-    percentages: [12, 34],
-    minLift: 2,
-    absLift: 5,
-    maxLift: 7
-  },
-  {
-    title: 'Answer dgssdg df gdf gdf gd f',
-    percentages: [55, 34],
-    minLift: 1,
-    absLift: 3,
-    maxLift: 5
-  }
-];
+function example1() {
+    var question = 'This is a question title?';
+    var series = ['Control', 'Exposed'];
+    var totals = [123, 215];
+    var answers = [
+      {
+        title: 'Answer 1',
+        percentages: [21, 54],
+        minLift: 1,
+        absLift: 2,
+        maxLift: 3
+      },
+      {
+        title: 'Answer 2',
+        percentages: [12, 34],
+        minLift: 2,
+        absLift: 5,
+        maxLift: 7
+      },
+      {
+        title: 'Answer dgssdg df gdf gdf gd f',
+        percentages: [55, 34],
+        minLift: 1,
+        absLift: 3,
+        maxLift: 5
+      }
+    ];
 
-var chart = new ScrutineerQuestionChart(question, series, totals, answers);
-document.body.appendChild(chart);
+    var chart = new ScrutineerQuestionChart(question, series, totals, answers);
+    document.body.appendChild(chart);
+}
+
+function example2() {
+    var question = 'Example 2';
+    var series = ['Control', 'Exposed1', 'Exposed2'];
+    var totals = [123, 456, 789];
+    var answers = [
+        {
+            title: 'A1',
+            percentages: [34, 54, 33],
+            minLift: [1, 2],
+            absLift: [2, 3],
+            maxLift: [4, 5]
+        },
+        {
+            title: 'A2',
+            percentages: [34, 54, 33],
+            minLift: [1, 2],
+            absLift: [2, 3],
+            maxLift: [4, 5]
+        },
+        {
+            title: 'A3',
+            percentages: [34, 54, 33],
+            minLift: [1, 2],
+            absLift: [2, 3],
+            maxLift: [4, 5]
+        }
+    ];
+
+    var chart = new ScrutineerQuestionChart(question, series, totals, answers);
+    document.body.appendChild(chart);
+}
+
+example1();
+example2();
         </script>
     </body>
 </html>

@@ -33,6 +33,8 @@
 .sqc .sqc__a {
     display: flex;
     align-items: center;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 .sqc .sqc__a .sqc__a--title {
     box-sizing: border-box;
@@ -44,24 +46,29 @@
     flex: 1 0 50%;
     padding: .25rem;
 }
-.sqc .sqc__a .sqc__a--bars div {
+.sqc .sqc__a .sqc__a--bars .sqc__a__bars div {
     position: relative;
     display: flex;
 }
-.sqc .sqc__a .sqc__a--bars div label {
+.sqc .sqc__a .sqc__a--bars .sqc__a__bars div label {
     position: absolute;
-    top: 0;
-    margin-left: 1rem;
+    bottom: 0;
+    margin-left: .5rem;
     font-weight: 300;
-    font-size: .8rem;
+    font-size: .8rem
+}
+.sqc .sqc__a .sqc__a__bars {
+    margin: .25rem;
+}
+.sqc .sqc__a .sqc__a__bars .sqc__progress-block:first-child > .sqc__progress-container {
+    height: 1rem;
 }
 .sqc__progress-container {
     position: relative;
     display: inline-block;
     overflow: hidden;
     width: 100%;
-    height: 1rem;
-    margin: .25rem;
+    height: 1.2rem;
     background: transparent;
     border-radius: 3px;
 }
@@ -74,8 +81,15 @@
 .sqc .sqc__a .sqc__a--range {
     box-sizing: border-box;
     flex: 1 0 30%;
-    padding: 1rem;
+    padding: .25rem;
     text-align: center;
+}
+.sqc__a__range--container {
+    height: 2.2rem;
+    margin: .25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .sqc__a__range {
     display: flex;
@@ -142,7 +156,6 @@
     display: flex;
     justify-content: center;
     padding: 1rem 0;
-    border-top: 1px solid rgba(0,0,0,.2);
 }
 .sqc .sqc__f .sqc__f__s {
     display: flex;
