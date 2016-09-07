@@ -62,6 +62,14 @@
                 if (!Array.isArray(answer[key])) {
                     answer[key] = [answer[key]];
                 }
+                var invalid = answer[key].some(function (v) {
+                    return (v === null || isUndefined(v));
+                });
+                if (invalid) {
+                    answer.minLift = [];
+                    answer.absLift = [];
+                    answer.maxLift = [];
+                }
             });
             return answer;
         });
@@ -190,13 +198,22 @@
      * @returns {Element} The lift range element.
      */
     function createLiftRange(thisMinLift, thisMaxLift, thisAbsLift, minLift, maxLift) {
+        var c = createElement('div', 'sqc__a__range--container');
+
+        // Lift cannot be calculated.
+        if (isUndefined(thisMinLift) || isUndefined(thisMaxLift) || isUndefined(thisAbsLift)) {
+            var nolift = createElement('div', '');
+            nolift.innerHTML = 'No lift';
+            c.appendChild(nolift);
+            return c;
+        }
+
         // Lift range.
         var range = maxLift - minLift;
         var minWidth = ((parseFloat(thisMinLift) - minLift) / range) * 100;
         var maxWidth = ((maxLift - parseFloat(thisMaxLift)) / range) * 100;
         var valPos = ((parseFloat(thisAbsLift) - minLift) / range) * 100;
 
-        var c = createElement('div', 'sqc__a__range--container');
 
         var f = createElement('figure', 'sqc__a__range');
 
@@ -335,6 +352,8 @@
         if (content) e.innerHTML = content;
         return e;
     }
+
+    function isUndefined(v) { return typeof v === 'undefined'; }
 
     // Make it available.
     window.ScrutineerQuestionChart = ScrutineerQuestionChart;
