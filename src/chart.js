@@ -203,7 +203,6 @@
         // Lift cannot be calculated.
         if (isUndefined(thisMinLift) || isUndefined(thisMaxLift) || isUndefined(thisAbsLift)) {
             var nolift = createElement('div', '');
-            nolift.innerHTML = 'No lift';
             c.appendChild(nolift);
             return c;
         }
