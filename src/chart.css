@@ -59,8 +59,20 @@
     font-size: .8rem
 }
 .sqc .sqc__a .sqc__a__bars {
+    margin: .5rem;
+}
+.sqc .sqc__a .sqc__a__bars:first-child {
+    margin-top: .25rem;
+    margin-bottom: .5rem;
+}
+.sqc .sqc__a .sqc__a__bars:last-child {
+    margin-top: .5rem;
+    margin-bottom: .25rem;
+}
+.sqc .sqc__a .sqc__a__bars:only-child {
     margin: .25rem;
 }
+
 .sqc .sqc__a .sqc__a__bars .sqc__progress-block:first-child > .sqc__progress-container {
     height: 1rem;
 }
