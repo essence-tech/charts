@@ -99,10 +99,21 @@
 }
 .sqc__a__range--container {
     height: 2.2rem;
-    margin: .25rem;
+    margin: .5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+.sqc__a__range--container:first-child {
+    margin-top: .25rem;
+    margin-bottom: .5rem;
+}
+.sqc__a__range--container:last-child {
+    margin-top: .5rem;
+    margin-bottom: .25rem;
+}
+.sqc__a__range--container:only-child {
+    margin: .5rem;
 }
 .sqc__a__range {
     display: flex;
