@@ -89,8 +89,12 @@
         var q = createElement('div', 'sqc__h--question', 'Q: '+title);
         header.appendChild(q);
 
+        // Numbers
+        var n = createElement('dev', 'sqc__h--numbers', 'Relative Lift');
+        header.appendChild(n);
+
         // Lift
-        var l = createElement('div', 'sqc__h--range', 'Absolute Lift Range');
+        var l = createElement('div', 'sqc__h--range', 'Absolute Lift');
         header.appendChild(l);
 
         return header;
@@ -98,7 +102,7 @@
 
     // Scrutineer brand colors.
     var COLORS = [
-        "#39679e", "#b8e446", "#f1674a", "#36af63",
+        "#b8e446", "#39679e", "#f1674a", "#36af63",
         "#134580", "#89b80e", "#c32e0f", "#0b8d3c",
         "#235897", "#a7da24", "#e64827", "#1ca750",
         "#527bad", "#cbf267", "#ff866d", "#51be79",
@@ -132,6 +136,9 @@
         // Answer bars.
         var b = createElement('div', 'sqc__a--bars');
 
+        // Answer numbers.
+        var n = createElement('div', 'sqc__a--numbers');
+
         // Answer lift.
         var l = createElement('div', 'sqc__a--range');
 
@@ -148,11 +155,15 @@
 
             b.appendChild(p);
 
+            // Numbers
+            n.appendChild(createNumbers(answer.percentages[0], answer.percentages[idx], answer.absLift[idx-1]));
+
             // Lift range
             l.appendChild(createLiftRange(answer.minLift[idx-1], answer.maxLift[idx-1], answer.absLift[idx-1], minLift, maxLift));
         }
 
         a.appendChild(b);
+        a.appendChild(n);
         a.appendChild(l);
 
         return a;
@@ -184,6 +195,31 @@
         barBlock.appendChild(barContainer);
 
         return barBlock;
+    }
+
+    /**
+     * Creates the numbers.
+     *
+     * @param {Number} thisControlPercent Percentage of control bar.
+     * @param {Number} thisExposedPercent Percentage of the exposed bar.
+     * @param {Number} thisAbsLift The absolute lift.
+     *
+     * @returns {Element} The numbers element.
+     */
+    function createNumbers(thisControlPercent, thisExposedPercent, thisAbsLift) {
+        thisControlPercent = parseFloat(thisControlPercent);
+        thisExposedPercent = parseFloat(thisExposedPercent);
+        var r = createElement('div', '');
+        var rNum = (((thisExposedPercent / thisControlPercent) - 1.0) * 100.0);
+        r.innerHTML = sensible(rNum)+'%';
+        //var a = createElement('div', '');
+        //var aNum = (thisExposedPercent - thisControlPercent);
+        //a.innerHTML = sensible(aNum)+'%';
+
+        var c = createElement('div', 'sqc__a__numbers-container');
+        c.appendChild(r);
+        //c.appendChild(a);
+        return c;
     }
 
     /**
@@ -350,6 +386,18 @@
         e.className = cls;
         if (content) e.innerHTML = content;
         return e;
+    }
+
+    /**
+     * Format a number sensibly.
+     *
+     * @param {Number} number number to format.
+     *
+     * @returns {String} A formated number.
+     */
+    function sensible(number) {
+
+        return number.toFixed(1);
     }
 
     function isUndefined(v) { return typeof v === 'undefined'; }

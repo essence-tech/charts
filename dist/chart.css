@@ -23,12 +23,21 @@
     flex: 1 0 70%;
     padding: 0 1rem;
 }
-.sqc .sqc__h .sqc__h--range {
+.sqc .sqc__h .sqc__h--numbers {
     box-sizing: border-box;
-    -ms-flex: 1 0 30%;
-    flex: 1 0 30%;
+    -ms-flex: 1 0 10%;
+    flex: 1 0 10%;
     padding: 0 1rem;
     text-align: center;
+    white-space: nowrap;
+}
+.sqc .sqc__h .sqc__h--range {
+    box-sizing: border-box;
+    -ms-flex: 1 0 20%;
+    flex: 1 0 20%;
+    padding: 0 1rem;
+    text-align: center;
+    white-space: nowrap;
 }
 /**
  * Chart answer
@@ -53,6 +62,20 @@
     flex: 1 0 50%;
     padding: .25rem;
 }
+.sqc .sqc__a .sqc__a--numbers {
+    box-sizing: border-box;
+    -ms-flex: 1 0 10%;
+    flex: 1 0 10%;
+    padding: .25rem;
+}
+.sqc .sqc__a .sqc__a--range {
+    box-sizing: border-box;
+    -ms-flex: 1 0 20%;
+    flex: 1 0 20%;
+    padding: .25rem;
+    text-align: center;
+}
+
 .sqc .sqc__a .sqc__a--bars .sqc__a__bars div {
     position: relative;
     display: -ms-flexbox;
@@ -99,12 +122,26 @@
     background-color: rgba(0,0,0,.1);
     border-radius: 3px;
 }
-.sqc .sqc__a .sqc__a--range {
-    box-sizing: border-box;
-    -ms-flex: 1 0 30%;
-    flex: 1 0 30%;
-    padding: .25rem;
-    text-align: center;
+.sqc__a__numbers-container {
+    height: 2.2rem;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: .5rem;
+}
+.sqc__a__numbers-container:first-child {
+    margin-top: .25rem;
+    margin-bottom: .5rem;
+}
+.sqc__a__numbers-container:last-child {
+    margin-top: .5rem;
+    margin-bottom: .25rem;
+}
+.sqc__a__numbers-container:only-child {
+    margin: .25rem;
 }
 .sqc__a__range--container {
     height: 2.2rem;
