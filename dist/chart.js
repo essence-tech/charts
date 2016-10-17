@@ -12,9 +12,10 @@
      * @param {Object[]} answers The answer data for this question.
      * @param {String} answer.title An answer title.
      * @param {Number[]} answer.percentages The percentage per series for this answer.
-     * @param {Number} answer.minLift The minimum lift for this answer.
-     * @param {Number} answer.absLift The absolute lift for this answer.
-     * @param {Number} answer.maxLift The maximum lift for this answer.
+     * @param {Number[]} answer.minLift The minimum lift for this answer.
+     * @param {Number[]} answer.absLift The absolute lift for this answer.
+     * @param {Number[]} answer.maxLift The maximum lift for this answer.
+     * @param {String[]} answer.color The color for the lift circle for this answer.
      *
      * @param {Object} options Associated options to go along with the question.
      *
@@ -58,6 +59,7 @@
      */
     function normamlizeAnswers(answers) {
         return answers.map(function (answer) {
+            // Required attributes.
             ['minLift', 'absLift', 'maxLift'].map(function (key) {
                 if (!Array.isArray(answer[key])) {
                     answer[key] = [answer[key]];
@@ -69,6 +71,15 @@
                     answer.minLift = [];
                     answer.absLift = [];
                     answer.maxLift = [];
+                }
+            });
+            // Optional attributes.
+            ['color'].map(function (key) {
+                if (answer[key] === null || isUndefined(answer[key])) {
+                    answer[key] = [];
+                }
+                if (!Array.isArray(answer[key])) {
+                    answer[key] = [answer[key]];
                 }
             });
             return answer;
@@ -159,7 +170,8 @@
             n.appendChild(createNumbers(answer.percentages[0], answer.percentages[idx], answer.absLift[idx-1]));
 
             // Lift range
-            l.appendChild(createLiftRange(answer.minLift[idx-1], answer.maxLift[idx-1], answer.absLift[idx-1], minLift, maxLift));
+            var color = isUndefined(answer.color[idx-1]) ? 'rgba(0,0,0,.2)' : answer.color[idx-1];
+            l.appendChild(createLiftRange(answer.minLift[idx-1], answer.maxLift[idx-1], answer.absLift[idx-1], color, minLift, maxLift));
         }
 
         a.appendChild(b);
@@ -233,7 +245,7 @@
      *
      * @returns {Element} The lift range element.
      */
-    function createLiftRange(thisMinLift, thisMaxLift, thisAbsLift, minLift, maxLift) {
+    function createLiftRange(thisMinLift, thisMaxLift, thisAbsLift, thisColor, minLift, maxLift) {
         var c = createElement('div', 'sqc__a__range--container');
 
         // Lift cannot be calculated.
@@ -268,6 +280,7 @@
         // Abs part
         var val = createElement('div', 'sqc__a__range--val');
         val.style.left = 'calc('+valPos+'% - .5rem)';
+        val.style.border = '2px solid '+thisColor;
         val.setAttribute('display', thisAbsLift+'%');
 
         f.appendChild(min);
