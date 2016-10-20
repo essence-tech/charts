@@ -120,6 +120,8 @@
         "#789bc5", "#d9f68d",
     ];
 
+    var DEFAULT_RANGE_COLOR = 'rgba(0,0,0,.2)';
+
     /**
      * Generate an answer row.
      *
@@ -142,7 +144,6 @@
 
         // Answer title.
         var c = createElement('div', 'sqc__a--title', answer.title);
-        a.appendChild(c);
 
         // Answer bars.
         var b = createElement('div', 'sqc__a--bars');
@@ -170,10 +171,17 @@
             n.appendChild(createNumbers(answer.percentages[0], answer.percentages[idx], answer.absLift[idx-1]));
 
             // Lift range
-            var color = isUndefined(answer.color[idx-1]) ? 'rgba(0,0,0,.2)' : answer.color[idx-1];
+            var color = isUndefined(answer.color[idx-1]) ? DEFAULT_RANGE_COLOR : answer.color[idx-1];
             l.appendChild(createLiftRange(answer.minLift[idx-1], answer.maxLift[idx-1], answer.absLift[idx-1], color, minLift, maxLift));
+
+            // Highlight color text, only for two branch and non default color
+            if (branches === 2 && color !== DEFAULT_RANGE_COLOR) {
+                c.style.color = color;
+                c.style.fontWeight = 'bold';
+            }
         }
 
+        a.appendChild(c);
         a.appendChild(b);
         a.appendChild(n);
         a.appendChild(l);
@@ -224,13 +232,9 @@
         var r = createElement('div', '');
         var rNum = (((thisExposedPercent / thisControlPercent) - 1.0) * 100.0);
         r.innerHTML = sensible(rNum)+'%';
-        //var a = createElement('div', '');
-        //var aNum = (thisExposedPercent - thisControlPercent);
-        //a.innerHTML = sensible(aNum)+'%';
 
         var c = createElement('div', 'sqc__a__numbers-container');
         c.appendChild(r);
-        //c.appendChild(a);
         return c;
     }
 
@@ -240,6 +244,7 @@
      * @param {Number} thisMinLift This answers minimum lift value.
      * @param {Number} thisMaxLift This answers maximum lift value.
      * @param {Number} thisAbsLift This answers absolute lift value.
+     * @param {String} thisColor This answers color.
      * @param {Number} minLift The overall mimimum lift value for all answers to keep scale.
      * @param {Number} maxLift The overall maximum lift value for all answers to keep scale.
      *
@@ -281,6 +286,9 @@
         var val = createElement('div', 'sqc__a__range--val');
         val.style.left = 'calc('+valPos+'% - .5rem)';
         val.style.border = '2px solid '+thisColor;
+        if (thisColor !== DEFAULT_RANGE_COLOR) {
+            val.style.backgroundColor = thisColor;
+        }
         val.setAttribute('display', thisAbsLift+'%');
 
         f.appendChild(min);
