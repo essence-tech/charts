@@ -43,6 +43,10 @@
                         Show relative lift
                         <input type="checkbox" ng-model="showRelative">
                     </label>
+                    <label>
+                        Show headroom lift
+                        <input type="checkbox" ng-model="showHeadroom">
+                    </label>
                 </div>
                 <div class="flex-col controls">
                     <label>
@@ -73,7 +77,7 @@
 
             <div id="render-me" style="width: {{width}}%">
                 <article class="{{theme}} {{charset}} align-middle">
-                    <perfect data="data" bar-dec="barDec" observed-dec="observedDec" relative-dec="relativeDec" show-circle-label="showCircleLabel" show-relative-lift="showRelative"></perfect>
+                    <perfect data="data" bar-dec="barDec" observed-dec="observedDec" relative-dec="relativeDec" show-circle-label="showCircleLabel" show-relative-lift="showRelative" show-headroom-lift="showHeadroom"></perfect>
                 </article>
             </div>
         </main>

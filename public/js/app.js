@@ -134,9 +134,10 @@ angular.module('generator').run();
         '<figure class="perfect flex-col">'+
             '<div class="perfect__header flex-row">'+
                 '<div class="perfect__header--question"><span ng-show="data.question">Q:</span> {{data.question}}</div>'+
-                '<div class="perfect__header--relative" ng-if="showRelativeLift">Relative lift</div>'+
-                '<div class="perfect__header--observed" ng-class="{wider: !showRelativeLift}">Absolute lift</div>'+
-                '<div class="perfect__header--range" ng-class="{wider: !showRelativeLift}">Lift range</div>'+
+                '<div class="perfect__header--relative" ng-if="showRelativeLift && !showHeadroomLift">Relative lift</div>'+
+                '<div class="perfect__header--relative" ng-if="showHeadroomLift && !showRelativeLift">Headroom lift</div>'+
+                '<div class="perfect__header--observed" ng-class="{wider: (!showRelativeLift && !showHeadroomLift)}">Absolute lift</div>'+
+                '<div class="perfect__header--range" ng-class="{wider: (!showRelativeLift && !showHeadroomLift)}">Lift range</div>'+
             '</div>'+
             '<div class="perfect__answer flex-row align-middle" ng-repeat="answer in data.answers">'+
                 '<div class="perfect__answer--copy">{{answer.copy}}</div>'+
@@ -150,7 +151,8 @@ angular.module('generator').run();
                         '<label style="left: {{(answer.exposed / maxPercent) * 100}}%">{{answer.exposed | number:barDec}}%</label>'+
                     '</div>'+
                 '</div>'+
-                '<div class="perfect__answer--relative {{answer.color}}" ng-if="showRelativeLift">{{((answer.exposed / answer.control) - 1) * 100.0 | number:relativeDec | pn}}%</div>'+
+                '<div class="perfect__answer--relative {{answer.color}}" ng-if="showRelativeLift && !showHeadroomLift">{{((answer.exposed / answer.control) - 1) * 100.0 | number:relativeDec | pn}}%</div>'+
+                '<div class="perfect__answer--relative {{answer.color}}" ng-if="showHeadroomLift && !showRelativeLift">{{((answer.exposed / (answer.control - 1)) - 1) * 100.0 | number:relativeDec | pn}}%</div>'+
                 '<div class="perfect__answer--observed {{answer.color}}" ng-class="{wider: !showRelativeLift}">{{answer.exposed - answer.control | number:observedDec | pn}}%</div>'+
                 '<div class="perfect__answer--range" ng-class="{wider: !showRelativeLift}">'+
                     '<ess-range min="minRange" max="maxRange" high="answer.range[2]" low="answer.range[0]" val="answer.range[1]" class="{{answer.color}}" show-circle-label="showCircleLabel"></ess-range>'+
@@ -165,7 +167,8 @@ angular.module('generator').run();
                 observedDec: '=',
                 relativeDec: '=',
                 showCircleLabel: '=',
-                showRelativeLift: '='
+                showRelativeLift: '=',
+                showHeadroomLift: '='
             },
             template: perfect,
             link: function ($s, element, attrs) {
