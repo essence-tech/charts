@@ -22,10 +22,10 @@
                         '<label style="left: {{(answer.exposed / maxPercent) * 100}}%">{{answer.exposed | number:barDec}}%</label>'+
                     '</div>'+
                 '</div>'+
-                '<div class="perfect__answer--relative {{answer.color}}" ng-if="showRelativeLift && !showHeadroomLift">{{((answer.exposed / answer.control) - 1) * 100.0 | number:relativeDec | pn}}%</div>'+
-                '<div class="perfect__answer--relative {{answer.color}}" ng-if="showHeadroomLift && !showRelativeLift">{{((answer.exposed / (answer.control - 1)) - 1) * 100.0 | number:relativeDec | pn}}%</div>'+
-                '<div class="perfect__answer--observed {{answer.color}}" ng-class="{wider: !showRelativeLift}">{{answer.exposed - answer.control | number:observedDec | pn}}%</div>'+
-                '<div class="perfect__answer--range" ng-class="{wider: !showRelativeLift}">'+
+                '<div class="perfect__answer--relative {{answer.color}}" ng-if="showRelativeLift && !showHeadroomLift">{{(((answer.exposed - answer.control) / answer.control) * 100.0) | number:relativeDec | pn}}%</div>'+
+                '<div class="perfect__answer--relative {{answer.color}}" ng-if="showHeadroomLift && !showRelativeLift">{{(((answer.exposed - answer.control) / (100 - answer.control)) * 100.0) | number:relativeDec | pn}}%</div>'+
+                '<div class="perfect__answer--observed {{answer.color}}" ng-class="{wider: (!showHeadroomLift && !showRelativeLift)}">{{answer.exposed - answer.control | number:observedDec | pn}}%</div>'+
+                '<div class="perfect__answer--range" ng-class="{wider: (!showHeadroomLift && !showRelativeLift)}">'+
                     '<ess-range min="minRange" max="maxRange" high="answer.range[2]" low="answer.range[0]" val="answer.range[1]" class="{{answer.color}}" show-circle-label="showCircleLabel"></ess-range>'+
                 '</div>'+
             '</div>'+
