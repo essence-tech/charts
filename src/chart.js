@@ -101,7 +101,7 @@
         header.appendChild(q);
 
         // Numbers
-        var n = createElement('dev', 'sqc__h--numbers', 'Relative Lift');
+        var n = createElement('dev', 'sqc__h--numbers', 'Headroom Lift');
         header.appendChild(n);
 
         // Lift
@@ -230,7 +230,7 @@
         thisControlPercent = parseFloat(thisControlPercent);
         thisExposedPercent = parseFloat(thisExposedPercent);
         var r = createElement('div', '');
-        var rNum = (((thisExposedPercent / thisControlPercent) - 1.0) * 100.0);
+        var rNum = (((thisExposedPercent - thisControlPercent)/ (100.0 - thisControlPercent) ) * 100.0);
         r.innerHTML = sensible(rNum)+'%';
 
         var c = createElement('div', 'sqc__a__numbers-container');
